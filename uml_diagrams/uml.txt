@@ -1,0 +1,47 @@
+@startuml
+
+class "Game" as Game {
+    - player1 : Player 
+    - player2 : Player 
+}
+
+class MainScreen {
+    - world : World
+    - stage : Stage
+    - spriteBatch : SpriteBatch
+
+    - create() : void
+    - render() : void
+    - dispose() : void
+}
+
+class "Tank" as Tank {
+    - fuel : Integer
+    - health : Integer
+    - position : Position
+    - angle : Double
+    - impulse : Integer
+    - mass : Integer
+
+    - fire() : void
+    - moveLeft() : void
+    - moveRight() : void
+}
+
+class "Player" as Player {
+    - name : String
+    - weapons : ArrayList
+    - tank : Tank
+}
+
+class Weapon {
+    - damage : Integer
+    - radius : Double
+    - mass : Integer
+
+}
+
+Player " 1" *-- " 1" Tank 
+Game " 1" *-- " 2" Player
+
+@enduml

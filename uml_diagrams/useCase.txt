@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+
+actor Player1 as P1
+actor Player2 as P2
+
+package MainMenu {
+    usecase "New Game" as newGame
+    usecase "Load Game" as loadGame
+    usecase "Exit" as exit
+}
+
+package PauseMenu {
+    usecase "Restart Game" as resumeGame
+    usecase "Main Menu" as backToMenu
+}
+
+package GameSetup {
+    usecase "Select Tank" as selectTank
+    usecase "Back" as backToMenu1
+}
+
+P1 --> newGame
+
+P1 --> selectTank
+P2 --> selectTank
+
+
+@enduml
