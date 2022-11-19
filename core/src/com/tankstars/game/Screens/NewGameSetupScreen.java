@@ -7,63 +7,57 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
 import org.w3c.dom.Text;
 
-public class MainMenuScreen implements Screen {
-    private final TankStarsGame game;
+public class NewGameSetupScreen implements Screen {
+    private TankStarsGame game;
     private Skin skin;
     private Stage stage;
     private Table table;
 
-    public MainMenuScreen (final TankStarsGame game) {
+    public NewGameSetupScreen (final TankStarsGame game) {
         this.game = game;
         skin = new Skin(Gdx.files.internal("shadeui/uiskin.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("tank-stars-banner.jpg"))));
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("purple-stripes-dark.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextButton buttonNewGame = new TextButton("New Game", skin);
-        TextButton buttonLoadGame = new TextButton("Load Game", skin);
-        TextButton buttonExitGame = new TextButton("Exit", skin);
-        buttonNewGame.getLabel().setFontScale(2, 2);
-        buttonLoadGame.getLabel().setFontScale(2, 2);
-        buttonExitGame.getLabel().setFontScale(2, 2);
+        TextField playerName = new TextField("Player One", skin);
+        table.add(playerName).pad(50);
 
-        buttonNewGame.addListener(new ClickListener() {
+        List<String> tankList = new List(skin);
+        tankList.setItems(new String[] {"tankA", "tankB", "tankC", "tankD"});
+        table.add(tankList).grow();
+
+        table.row();
+
+        TextButton buttonBack = new TextButton("Back", skin);
+        buttonBack.getLabel().setFontScale(2, 2);
+        table.add(buttonBack).left().pad(20);
+
+        TextButton buttonNext = new TextButton("Next", skin);
+        buttonNext.getLabel().setFontScale(2, 2);
+        table.add(buttonNext).right().pad(20);
+
+        buttonBack.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                game.setScreen(new NewGameSetupScreen(game));
+                game.setScreen(new MainMenuScreen(game));
                 dispose();
             }
         });
-        buttonExitGame.addListener(new ClickListener() {
-            @Override
-            public void clicked (InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
 
-        table.defaults()
-                .width(200)
-                .height(100)
-                .space(10);
 
-        table.add(buttonNewGame);
-        table.add(buttonLoadGame);
-        table.add(buttonExitGame);
     }
-
 
     @Override
     public void show() {
@@ -101,6 +95,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+
     }
 }

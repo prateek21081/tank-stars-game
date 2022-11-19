@@ -5,63 +5,44 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
-import org.w3c.dom.Text;
 
-public class MainMenuScreen implements Screen {
-    private final TankStarsGame game;
+public class InGameMenuScreen implements Screen {
+    private TankStarsGame game;
     private Skin skin;
     private Stage stage;
     private Table table;
 
-    public MainMenuScreen (final TankStarsGame game) {
+    public InGameMenuScreen (TankStarsGame game) {
         this.game = game;
         skin = new Skin(Gdx.files.internal("shadeui/uiskin.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("tank-stars-banner.jpg"))));
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("tank-stars-pause-menu-bg.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextButton buttonNewGame = new TextButton("New Game", skin);
-        TextButton buttonLoadGame = new TextButton("Load Game", skin);
-        TextButton buttonExitGame = new TextButton("Exit", skin);
-        buttonNewGame.getLabel().setFontScale(2, 2);
-        buttonLoadGame.getLabel().setFontScale(2, 2);
-        buttonExitGame.getLabel().setFontScale(2, 2);
+        TextButton buttonRestartGame = new TextButton("Restart Game", skin);
+        TextButton buttonMainMenu = new TextButton("Main Menu", skin);
+        buttonRestartGame.getLabel().setFontScale(2, 2);
+        buttonMainMenu.getLabel().setFontScale(2, 2);
 
-        buttonNewGame.addListener(new ClickListener() {
-            @Override
-            public void clicked (InputEvent event, float x, float y) {
-                game.setScreen(new NewGameSetupScreen(game));
-                dispose();
-            }
-        });
-        buttonExitGame.addListener(new ClickListener() {
-            @Override
-            public void clicked (InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
-
-        table.defaults()
+        table.add(buttonRestartGame)
                 .width(200)
                 .height(100)
                 .space(10);
-
-        table.add(buttonNewGame);
-        table.add(buttonLoadGame);
-        table.add(buttonExitGame);
+        table.add(buttonMainMenu)
+                .width(200)
+                .height(100)
+                .space(10);
     }
 
 
@@ -101,6 +82,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+
     }
 }
