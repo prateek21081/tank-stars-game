@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
-import org.w3c.dom.Text;
 
 public class NewGameSetupScreen implements Screen {
     private TankStarsGame game;
@@ -20,9 +19,15 @@ public class NewGameSetupScreen implements Screen {
     private Stage stage;
     private Table table;
 
+    List<String> tankList;
+    TextField playerName;
+
+    TextButton buttonBack;
+    TextButton buttonNext;
+
     public NewGameSetupScreen (final TankStarsGame game) {
         this.game = game;
-        skin = new Skin(Gdx.files.internal("shadeui/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("quantumhorizonui/quantum-horizon-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -31,20 +36,20 @@ public class NewGameSetupScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextField playerName = new TextField("Player One", skin);
+        playerName = new TextField("Player One", skin);
         table.add(playerName).pad(50);
 
-        List<String> tankList = new List(skin);
+        tankList = new List(skin);
         tankList.setItems(new String[] {"tankA", "tankB", "tankC", "tankD"});
         table.add(tankList).grow();
 
         table.row();
 
-        TextButton buttonBack = new TextButton("Back", skin);
+        buttonBack = new TextButton("Back", skin);
         buttonBack.getLabel().setFontScale(2, 2);
         table.add(buttonBack).left().pad(20);
 
-        TextButton buttonNext = new TextButton("Next", skin);
+        buttonNext = new TextButton("Next", skin);
         buttonNext.getLabel().setFontScale(2, 2);
         table.add(buttonNext).right().pad(20);
 
@@ -95,6 +100,6 @@ public class NewGameSetupScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

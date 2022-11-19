@@ -22,9 +22,13 @@ public class MainMenuScreen implements Screen {
     private Stage stage;
     private Table table;
 
+    TextButton buttonNewGame;
+    TextButton buttonLoadGame;
+    TextButton buttonExitGame;
+
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
-        skin = new Skin(Gdx.files.internal("shadeui/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("quantumhorizonui/quantum-horizon-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -33,9 +37,9 @@ public class MainMenuScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextButton buttonNewGame = new TextButton("New Game", skin);
-        TextButton buttonLoadGame = new TextButton("Load Game", skin);
-        TextButton buttonExitGame = new TextButton("Exit", skin);
+        buttonNewGame = new TextButton("New Game", skin);
+        buttonLoadGame = new TextButton("Load Game", skin);
+        buttonExitGame = new TextButton("Exit", skin);
         buttonNewGame.getLabel().setFontScale(2, 2);
         buttonLoadGame.getLabel().setFontScale(2, 2);
         buttonExitGame.getLabel().setFontScale(2, 2);
