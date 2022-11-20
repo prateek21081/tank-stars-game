@@ -40,9 +40,9 @@ public class MainMenuScreen implements Screen {
         buttonNewGame = new TextButton("New Game", skin);
         buttonLoadGame = new TextButton("Load Game", skin);
         buttonExitGame = new TextButton("Exit", skin);
-        buttonNewGame.getLabel().setFontScale(2, 2);
-        buttonLoadGame.getLabel().setFontScale(2, 2);
-        buttonExitGame.getLabel().setFontScale(2, 2);
+        buttonNewGame.getLabel();
+        buttonLoadGame.getLabel();
+        buttonExitGame.getLabel();
 
         buttonNewGame.addListener(new ClickListener() {
             @Override

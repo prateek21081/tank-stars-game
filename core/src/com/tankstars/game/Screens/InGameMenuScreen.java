@@ -32,8 +32,8 @@ public class InGameMenuScreen implements Screen {
 
         TextButton buttonRestartGame = new TextButton("Restart Game", skin);
         TextButton buttonMainMenu = new TextButton("Main Menu", skin);
-        buttonRestartGame.getLabel().setFontScale(2, 2);
-        buttonMainMenu.getLabel().setFontScale(2, 2);
+        buttonRestartGame.getLabel();
+        buttonMainMenu.getLabel();
 
         table.add(buttonRestartGame)
                 .width(200)
