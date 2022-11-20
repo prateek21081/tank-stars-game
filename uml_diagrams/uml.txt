@@ -3,16 +3,50 @@
 class "Game" as Game {
     - player1 : Player 
     - player2 : Player 
+
+    + create() : void
+    + createPlayer(String name, Tank tank) : void
 }
 
-class MainScreen {
-    - world : World
+class "MainMenuScreen" as MainMenuScreen {
+    - TankStarsGame : Game
     - stage : Stage
-    - spriteBatch : SpriteBatch
+    - skin : Skin
+    - table : Table
+    - buttonNewGame : TextButton
+    - buttonLoadGame : TextButton
+    - buttonExitGame : TextButton
 
-    - create() : void
-    - render() : void
-    - dispose() : void
+    + MainMenuScreen(TankStarsGame Game)
+    + render() : void
+    + dispose() : void
+}
+
+class "InGameMenuScreen" as InGameMenuScreen {
+    - TankStarsGame : Game
+    - stage : Stage
+    - skin : Skin
+    - table : Table
+
+    + InGameMenuScreen(TankStarsGame Game)
+    + render() : void
+    + dispose() : void
+}
+
+class "NewGameSetupScreen" as NewGameSetupScreen {
+    - TankStarsGame : Game
+    - stage : Stage
+    - skin : Skin
+    - table : Table
+    - buttonNext : TextButton
+    - buttonBack : TextButton
+    - tankList : List<Tank>
+
+    + NewGameSetupScreen(TankStarsGame Game)
+    + render() : void
+    + dispose() : void
+    + getPlayerName() : String
+    + getTankName() : String
 }
 
 class "Tank" as Tank {
@@ -22,26 +56,60 @@ class "Tank" as Tank {
     - angle : Double
     - impulse : Integer
     - mass : Integer
+    - weapons : ArrayList
 
     - fire() : void
-    - moveLeft() : void
-    - moveRight() : void
+
+    + getHealth() : Integer
+    + getPosition() : Position
+    + getAngle() : Double
+    + getWeapons() : ArrayList
+    + getFuel() : Integer
+
+    + setHealth()
+    + setPosition()
+    + setAngle()
+    + setWeapons()
+    + setFuel()
+
+}
+
+class "GameScreen" as GameScreen {
+    + playerTurn : Integer
+    + player1 : Player
+    + player2 : Player
+    + terrain : Terrain
+
+    + create() : void
+    + render() : void
+    + dispose() : void
+
+    - playTurn() : void
 }
 
 class "Player" as Player {
     - name : String
-    - weapons : ArrayList
     - tank : Tank
+
+    + createTank(String name) : void
+    + play() : void
 }
 
-class Weapon {
+class "Weapon" as Weapon {
     - damage : Integer
     - radius : Double
     - mass : Integer
 
 }
 
-Player " 1" *-- " 1" Tank 
 Game " 1" *-- " 2" Player
+Player " 1" *-- " 2" Tank
+Tank " 1 " *-- " 1..*" Weapon
+Player " 2" <-- " 1" GameScreen
+
+Game <-- MainMenuScreen
+Game <-- InGameMenuScreen
+Game <-- NewGameSetupScreen
+
 
 @enduml
