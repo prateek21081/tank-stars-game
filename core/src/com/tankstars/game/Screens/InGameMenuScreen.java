@@ -5,10 +5,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
@@ -19,9 +21,9 @@ public class InGameMenuScreen implements Screen {
     private Stage stage;
     private Table table;
 
-    public InGameMenuScreen (TankStarsGame game) {
+    public InGameMenuScreen (final TankStarsGame game) {
         this.game = game;
-        skin = new Skin(Gdx.files.internal("shadeui/uiskin.json"));
+        skin = new Skin(Gdx.files.internal("quantumhorizonui/quantum-horizon-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -43,6 +45,14 @@ public class InGameMenuScreen implements Screen {
                 .width(200)
                 .height(100)
                 .space(10);
+
+        buttonMainMenu.addListener(new ClickListener() {
+            @Override
+            public void clicked (InputEvent event, float x, float y) {
+                game.setScreen(new MainMenuScreen(game));
+                dispose();
+            }
+        });
     }
 
 
@@ -82,6 +92,6 @@ public class InGameMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

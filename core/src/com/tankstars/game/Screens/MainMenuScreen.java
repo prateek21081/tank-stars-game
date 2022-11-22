@@ -28,6 +28,11 @@ public class MainMenuScreen implements Screen {
 
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
+
+        // reset player status here for now.
+        game.setPlayerA(null);
+        game.setPlayerB(null);
+
         skin = new Skin(Gdx.files.internal("quantumhorizonui/quantum-horizon-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);

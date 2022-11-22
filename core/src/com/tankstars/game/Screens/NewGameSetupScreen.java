@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.tankstars.game.Player;
 import com.tankstars.game.TankStarsGame;
 
 public class NewGameSetupScreen implements Screen {
@@ -60,7 +61,7 @@ public class NewGameSetupScreen implements Screen {
 
         Label nameLabel = new Label("Enter name: ", skin);
         rowOne.add(nameLabel).spaceRight(10);
-        playerName = new TextField("Player One", skin);
+        playerName = new TextField("Player" , skin);
         rowOne.add(playerName).prefWidth(400f);
 
         tankList = new List(skin);
@@ -81,7 +82,27 @@ public class NewGameSetupScreen implements Screen {
         buttonBack.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                game.setScreen(new MainMenuScreen(game));
+                if (game.getPlayerA() != null) {
+                    game.setPlayerA(null);
+                    game.setScreen(new NewGameSetupScreen(game));
+                } else {
+                    game.setScreen(new MainMenuScreen(game));
+                }
+                dispose();
+            }
+        });
+
+        buttonNext.addListener(new ClickListener() {
+            @Override
+            public void clicked (InputEvent event, float x, float y) {
+                Player player = new Player(playerName.getText(), tankList.getSelected());
+                if (game.getPlayerA() == null) {
+                    game.setPlayerA(player);
+                    game.setScreen(new NewGameSetupScreen(game));
+                } else if (game.getPlayerB() == null) {
+                    game.setPlayerB(player);
+                    game.setScreen(new InGameMenuScreen(game));
+                }
                 dispose();
             }
         });
