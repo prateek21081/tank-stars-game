@@ -13,18 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.kotcrab.vis.ui.widget.VisTable;
+import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.tankstars.game.TankStarsGame;
 import org.w3c.dom.Text;
 
 public class MainMenuScreen implements Screen {
     private final TankStarsGame game;
-    private Skin skin;
     private Stage stage;
-    private Table table;
+    private VisTable table;
 
-    TextButton buttonNewGame;
-    TextButton buttonLoadGame;
-    TextButton buttonExitGame;
+    VisTextButton buttonNewGame;
+    VisTextButton buttonLoadGame;
+    VisTextButton buttonExitGame;
 
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
@@ -33,18 +34,17 @@ public class MainMenuScreen implements Screen {
         game.setPlayerA(null);
         game.setPlayerB(null);
 
-        skin = new Skin(Gdx.files.internal("quantumhorizonui/quantum-horizon-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        table = new Table();
+        table = new VisTable();
         table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("tank-stars-banner.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
-        buttonNewGame = new TextButton("New Game", skin);
-        buttonLoadGame = new TextButton("Load Game", skin);
-        buttonExitGame = new TextButton("Exit", skin);
+        buttonNewGame = new VisTextButton("New Game");
+        buttonLoadGame = new VisTextButton("Load Game");
+        buttonExitGame = new VisTextButton("Exit");
         buttonNewGame.getLabel();
         buttonLoadGame.getLabel();
         buttonExitGame.getLabel();
@@ -60,6 +60,13 @@ public class MainMenuScreen implements Screen {
             @Override
             public void clicked (InputEvent event, float x, float y) {
                 Gdx.app.exit();
+            }
+        });
+        buttonLoadGame.addListener(new ClickListener() {
+            @Override
+            public void clicked (InputEvent event, float x, float y) {
+                game.setScreen(new LoadGameScreen(game));
+                dispose();
             }
         });
 

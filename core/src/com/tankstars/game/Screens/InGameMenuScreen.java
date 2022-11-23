@@ -13,17 +13,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.tankstars.game.TankStarsGame;
 
 public class InGameMenuScreen implements Screen {
     private TankStarsGame game;
-    private Skin skin;
     private Stage stage;
     private Table table;
 
     public InGameMenuScreen (final TankStarsGame game) {
         this.game = game;
-        skin = new Skin(Gdx.files.internal("quantumhorizonui/quantum-horizon-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -32,8 +31,8 @@ public class InGameMenuScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextButton buttonRestartGame = new TextButton("Restart Game", skin);
-        TextButton buttonMainMenu = new TextButton("Main Menu", skin);
+        VisTextButton buttonRestartGame = new VisTextButton("Restart Game");
+        VisTextButton buttonMainMenu = new VisTextButton("Main Menu");
         buttonRestartGame.getLabel();
         buttonMainMenu.getLabel();
 
