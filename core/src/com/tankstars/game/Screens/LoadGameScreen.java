@@ -5,33 +5,24 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.kotcrab.vis.ui.widget.file.FileChooser;
-import com.kotcrab.vis.ui.widget.file.FileChooserAdapter;
 import com.tankstars.game.TankStarsGame;
 
 public class LoadGameScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
-    private FileChooser fileChooser;
+    private Skin skin;
 
     public LoadGameScreen (final TankStarsGame game) {
         this.game = game;
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-
-        fileChooser = new FileChooser(FileChooser.Mode.OPEN);
-        fileChooser.setSelectionMode(FileChooser.SelectionMode.FILES);
-        fileChooser.setListener(new FileChooserAdapter() {
-            @Override
-            public void selected (Array<FileHandle> file) {
-                //textField.setText(file.file().getAbsolutePath());
-            }
-        });
-
-        stage.addActor(fileChooser);
     }
 
     @Override

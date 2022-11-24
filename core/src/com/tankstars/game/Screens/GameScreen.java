@@ -8,42 +8,39 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.kotcrab.vis.ui.widget.VisProgressBar;
-import com.kotcrab.vis.ui.widget.VisSlider;
-import com.kotcrab.vis.ui.widget.VisTable;
-import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.tankstars.game.TankStarsGame;
 
 public class GameScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
-    private VisTable root;
+    private Table root;
+    private Skin skin;
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+        skin = new Skin(Gdx.files.internal("skin/shimmer-ui.json"));
 
-        root = new VisTable();
-        //root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-pause-menu-bg.jpg"))));
+        root = new Table();
         root.setFillParent(true);
         stage.addActor(root);
 
-        VisTable topHUD = new VisTable();
-        VisTable btmHUD = new VisTable();
-        VisTable gameView = new VisTable();
+        Table topHUD = new Table();
+        Table btmHUD = new Table();
+        Table gameView = new Table();
 
-        VisProgressBar healthPlayerA = new VisProgressBar(70, 100, 1, false);
+        ProgressBar healthPlayerA = new ProgressBar(70, 100, 1, false, skin);
         topHUD.add(healthPlayerA).expand().right().top().space(30).padTop(30);
-        VisTextButton pauseButton = new VisTextButton("||");
+        TextButton pauseButton = new TextButton("||", skin);
         topHUD.add(pauseButton).top().space(30).padTop(30);
-        VisProgressBar healthPlayerB = new VisProgressBar(25, 100, 1, false);
+        ProgressBar healthPlayerB = new ProgressBar(25, 100, 1, false, skin);
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
 
         root.add(topHUD).grow();
@@ -52,11 +49,11 @@ public class GameScreen implements Screen {
         root.row();
         root.add(btmHUD).grow();
 
-        VisSlider angleSlider = new VisSlider(0, 359, 1, false);
+        Slider angleSlider = new Slider(0, 359, 1, false, skin);
         btmHUD.add(angleSlider).expand().right().bottom().space(30).padBottom(30);
-        VisTextButton fireButton = new VisTextButton("Fire");
+        TextButton fireButton = new TextButton("Fire", skin);
         btmHUD.add(fireButton).bottom().space(30).padBottom(30);
-        VisSlider powerSlider = new VisSlider(0, 100, 1, false);
+        Slider powerSlider = new Slider(0, 100, 1, false, skin);
         btmHUD.add(powerSlider).expand().left().bottom().space(30).padBottom(30);
 
 

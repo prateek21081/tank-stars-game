@@ -2,6 +2,7 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,19 +14,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.kotcrab.vis.ui.widget.VisTable;
-import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.tankstars.game.TankStarsGame;
 import org.w3c.dom.Text;
 
 public class MainMenuScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
-    private VisTable table;
+    private Table table;
+    private Skin skin;
 
-    VisTextButton buttonNewGame;
-    VisTextButton buttonLoadGame;
-    VisTextButton buttonExitGame;
+    TextButton buttonNewGame;
+    TextButton buttonLoadGame;
+    TextButton buttonExitGame;
 
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
@@ -34,17 +34,18 @@ public class MainMenuScreen implements Screen {
         game.setPlayerA(null);
         game.setPlayerB(null);
 
+        skin = new Skin(Gdx.files.internal("skin/shimmer-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        table = new VisTable();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-banner.jpg"))));
+        table = new Table();
+        //table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-banner.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
-        buttonNewGame = new VisTextButton("New Game");
-        buttonLoadGame = new VisTextButton("Load Game");
-        buttonExitGame = new VisTextButton("Exit");
+        buttonNewGame = new TextButton("New Game", skin);
+        buttonLoadGame = new TextButton("Load Game", skin);
+        buttonExitGame = new TextButton("Exit", skin);
         buttonNewGame.getLabel();
         buttonLoadGame.getLabel();
         buttonExitGame.getLabel();

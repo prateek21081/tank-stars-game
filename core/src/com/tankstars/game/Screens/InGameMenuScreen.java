@@ -13,26 +13,26 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.tankstars.game.TankStarsGame;
 
 public class InGameMenuScreen implements Screen {
     private TankStarsGame game;
     private Stage stage;
     private Table table;
+    private Skin skin;
 
     public InGameMenuScreen (final TankStarsGame game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+        skin = new Skin(Gdx.files.internal("skin/shimmer-ui.json"));
 
         table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-banner.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
-        VisTextButton buttonRestartGame = new VisTextButton("Restart Game");
-        VisTextButton buttonMainMenu = new VisTextButton("Main Menu");
+        TextButton buttonRestartGame = new TextButton("Restart Game", skin);
+        TextButton buttonMainMenu = new TextButton("Main Menu", skin);
         buttonRestartGame.getLabel();
         buttonMainMenu.getLabel();
 
