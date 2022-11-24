@@ -23,10 +23,13 @@ public class NewGameSetupScreen implements Screen {
 
     SelectBox<String> tankListA;
     SelectBox<String> tankListB;
-    SpriteDrawable tankCoalition = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition.png"))));
-    SpriteDrawable tankHelios = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/helios.png"))));
-    SpriteDrawable tankMark1 = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1.png"))));
+    SpriteDrawable tankCoalitionA = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition.png"))));
+    SpriteDrawable tankHeliosA = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/helios.png"))));
+    SpriteDrawable tankMark1A = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1.png"))));
 
+    SpriteDrawable tankCoalitionB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition-mirrored.png"))));
+    SpriteDrawable tankHeliosB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/helios-mirrored.png"))));
+    SpriteDrawable tankMark1B = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1-mirrored.png"))));
     TextField player1Name;
     TextField player2Name;
 
@@ -51,9 +54,9 @@ public class NewGameSetupScreen implements Screen {
         Table rowOneColTwo = new Table();
 
         Table navElements = new Table();
-        rowOne.setDebug(true, true);
-        rowTwo.setDebug(true, true);
-        navElements.setDebug(true, true);
+//         rowOne.setDebug(true, true);
+//         rowTwo.setDebug(true, true);
+//         navElements.setDebug(true, true);
 
         root.add(rowOne).grow();
         root.row();
@@ -77,14 +80,14 @@ public class NewGameSetupScreen implements Screen {
         rowTwo.add(tankListA).expandX().fillX().padLeft(30);
 
         tankListB = new SelectBox<String>(skin);
-        tankListB.setItems(new String[] {"Coalition", "Helios", "Mark 1"});
+        tankListB.setItems(new String[] {"Helios", "Coalition", "Mark 1"});
         rowTwo.add(tankListB).expandX().fillX().padLeft(30);
 
         rowTwo.row();
-        final Image imageA = new Image(tankCoalition);
+        final Image imageA = new Image(tankCoalitionA);
         rowTwo.add(imageA).expandX();
 
-        final Image imageB = new Image(tankCoalition);
+        final Image imageB = new Image(tankHeliosB);
         rowTwo.add(imageB).expandX();
 
         // Back and Next Buttons
@@ -130,13 +133,31 @@ public class NewGameSetupScreen implements Screen {
                 String tankName = tankListA.getSelected();
                 switch (tankName) {
                     case "Coalition":
-                        imageA.setDrawable(tankCoalition);
+                        imageA.setDrawable(tankCoalitionA);
                         break;
                     case "Helios":
-                        imageA.setDrawable(tankHelios);
+                        imageA.setDrawable(tankHeliosA);
                         break;
                     case "Mark 1":
-                        imageA.setDrawable(tankMark1);
+                        imageA.setDrawable(tankMark1A);
+                        break;
+                }
+            }
+        });
+
+        tankListB.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                String tankName = tankListA.getSelected();
+                switch (tankName) {
+                    case "Coalition":
+                        imageB.setDrawable(tankCoalitionB);
+                        break;
+                    case "Helios":
+                        imageB.setDrawable(tankHeliosB);
+                        break;
+                    case "Mark 1":
+                        imageB.setDrawable(tankMark1B);
                         break;
                 }
             }
