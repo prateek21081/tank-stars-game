@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -43,15 +42,14 @@ public class NewGameSetupScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
-        root.setDebug(true, true);
+        //root.setDebug(true, true);
         //root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/purple-stripes-dark.jpg"))));
         root.setFillParent(true);
         stage.addActor(root);
+        root.padTop(50);
 
         Table rowOne = new Table();
-        Table rowOneColOne = new Table();
         Table rowTwo = new Table();
-        Table rowOneColTwo = new Table();
 
         Table navElements = new Table();
 //         rowOne.setDebug(true, true);
@@ -67,21 +65,21 @@ public class NewGameSetupScreen implements Screen {
         Label nameLabel1 = new Label("Enter player 1 name: ", skin);
         rowOne.add(nameLabel1).spaceRight(10);
         player1Name = new TextField("Player", skin);
-        rowOne.add(player1Name).prefWidth(400f);
+        rowOne.add(player1Name).spaceRight(275).prefWidth(200f);
 
         Label nameLabel2 = new Label("Enter player 2 name: ", skin);
-        rowOne.add(nameLabel2).spaceRight(10);
+        rowOne.add(nameLabel2).spaceRight(10).spaceLeft(275);
         player2Name = new TextField("Player", skin);
-        rowOne.add(player2Name).prefWidth(400f);
+        rowOne.add(player2Name).prefWidth(200f);
 
         //tankList = new List(skin);
         tankListA = new SelectBox<String>(skin);
         tankListA.setItems(new String[] {"Coalition", "Helios", "Mark 1"});
-        rowTwo.add(tankListA).expandX().fillX().padLeft(30);
+        rowTwo.add(tankListA).growX().padLeft(200).padRight(200);
 
         tankListB = new SelectBox<String>(skin);
         tankListB.setItems(new String[] {"Helios", "Coalition", "Mark 1"});
-        rowTwo.add(tankListB).expandX().fillX().padLeft(30);
+        rowTwo.add(tankListB).growX().padLeft(200).padRight(200);
 
         rowTwo.row();
         final Image imageA = new Image(tankCoalitionA);
@@ -102,12 +100,7 @@ public class NewGameSetupScreen implements Screen {
         buttonBack.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                if (game.getPlayerA() != null) {
-                    game.setPlayerA(null);
-                    game.setScreen(new NewGameSetupScreen(game));
-                } else {
-                    game.setScreen(new MainMenuScreen(game));
-                }
+                game.setScreen(new MainMenuScreen(game));
                 dispose();
             }
         });
@@ -115,14 +108,9 @@ public class NewGameSetupScreen implements Screen {
         buttonNext.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                Player player = new Player(player1Name.getText(), tankListA.getSelected());
-                if (game.getPlayerA() == null) {
-                    game.setPlayerA(player);
-                    game.setScreen(new NewGameSetupScreen(game));
-                } else if (game.getPlayerB() == null) {
-                    game.setPlayerB(player);
-                    game.setScreen(new GameScreen(game));
-                }
+                Player playerA = new Player(player1Name.getText(), tankListA.getSelected());
+                Player playerB = new Player(player2Name.getText(), tankListB.getSelected());
+                game.setScreen(new GameScreen(game));
                 dispose();
             }
         });
@@ -148,7 +136,7 @@ public class NewGameSetupScreen implements Screen {
         tankListB.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                String tankName = tankListA.getSelected();
+                String tankName = tankListB.getSelected();
                 switch (tankName) {
                     case "Coalition":
                         imageB.setDrawable(tankCoalitionB);
