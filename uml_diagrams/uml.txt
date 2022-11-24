@@ -11,7 +11,6 @@ class "Game" as Game {
 class "MainMenuScreen" as MainMenuScreen {
     - TankStarsGame : Game
     - stage : Stage
-    - skin : Skin
     - table : Table
     - buttonNewGame : TextButton
     - buttonLoadGame : TextButton
@@ -25,7 +24,6 @@ class "MainMenuScreen" as MainMenuScreen {
 class "InGameMenuScreen" as InGameMenuScreen {
     - TankStarsGame : Game
     - stage : Stage
-    - skin : Skin
     - table : Table
 
     + InGameMenuScreen(TankStarsGame Game)
@@ -36,7 +34,6 @@ class "InGameMenuScreen" as InGameMenuScreen {
 class "NewGameSetupScreen" as NewGameSetupScreen {
     - TankStarsGame : Game
     - stage : Stage
-    - skin : Skin
     - table : Table
     - buttonNext : TextButton
     - buttonBack : TextButton
@@ -49,7 +46,40 @@ class "NewGameSetupScreen" as NewGameSetupScreen {
     + getTankName() : String
 }
 
-class "Tank" as Tank {
+class "LoadGameScreen" as LoadGameScreen {
+        - TankStarsGame : game
+        - Stage : stage
+        - FileChooser : fileChooser
+}
+
+class "GameScreen" as GameScreen {
+    + playerTurn : Integer
+    + player1 : Player
+    + player2 : Player
+    + terrain : Terrain
+
+    + create() : void
+    + render() : void
+    + dispose() : void
+
+    - playTurn() : void
+    - isGameOver() : Boolean
+}
+
+class "GameOverScreen" as GameOverScreen {
+    - TankStarsGame : Game
+    - stage : Stage
+}
+
+class "Player" as Player <<Serializable>> {
+    - name : String
+    - tank : Tank
+
+    + createTank(String name) : void
+    + play() : void
+}
+
+class "Tank" as Tank <<Serializable>> {
     - fuel : Integer
     - health : Integer
     - position : Position
@@ -74,28 +104,8 @@ class "Tank" as Tank {
 
 }
 
-class "GameScreen" as GameScreen {
-    + playerTurn : Integer
-    + player1 : Player
-    + player2 : Player
-    + terrain : Terrain
 
-    + create() : void
-    + render() : void
-    + dispose() : void
-
-    - playTurn() : void
-}
-
-class "Player" as Player {
-    - name : String
-    - tank : Tank
-
-    + createTank(String name) : void
-    + play() : void
-}
-
-class "Weapon" as Weapon {
+class "Weapon" as Weapon <<Serializable>> {
     - damage : Integer
     - radius : Double
     - mass : Integer
@@ -105,11 +115,13 @@ class "Weapon" as Weapon {
 Game " 1" *-- " 2" Player
 Player " 1" *-- " 2" Tank
 Tank " 1 " *-- " 1..*" Weapon
-Player " 2" <-- " 1" GameScreen
 
 Game <-- MainMenuScreen
 Game <-- InGameMenuScreen
 Game <-- NewGameSetupScreen
+Game <-- LoadGameScreen
+Game <-- GameScreen
+Game <-- GameOverScreen
 
 
 @enduml

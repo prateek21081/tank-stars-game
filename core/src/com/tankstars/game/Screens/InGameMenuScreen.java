@@ -27,7 +27,7 @@ public class InGameMenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-pause-menu-bg.jpg"))));
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-banner.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 

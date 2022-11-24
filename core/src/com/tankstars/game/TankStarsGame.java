@@ -2,6 +2,7 @@ package com.tankstars.game;
 
 import com.badlogic.gdx.Game;
 import com.kotcrab.vis.ui.VisUI;
+import com.tankstars.game.Screens.GameScreen;
 import com.tankstars.game.Screens.MainMenuScreen;
 
 public class TankStarsGame extends Game {
@@ -9,8 +10,8 @@ public class TankStarsGame extends Game {
 	private Player playerB = null;
 	@Override
 	public void create () {
-		VisUI.load(VisUI.SkinScale.X1);
-		setScreen(new MainMenuScreen(this));
+		VisUI.load(VisUI.SkinScale.X2);
+		setScreen(new GameScreen(this));
 	}
 
 	@Override

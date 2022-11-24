@@ -98,7 +98,7 @@ public class NewGameSetupScreen implements Screen {
                     game.setScreen(new NewGameSetupScreen(game));
                 } else if (game.getPlayerB() == null) {
                     game.setPlayerB(player);
-                    game.setScreen(new InGameMenuScreen(game));
+                    game.setScreen(new GameScreen(game));
                 }
                 dispose();
             }
