@@ -12,20 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.kotcrab.vis.ui.widget.VisLabel;
-import com.kotcrab.vis.ui.widget.VisList;
-import com.kotcrab.vis.ui.widget.VisTextButton;
-import com.kotcrab.vis.ui.widget.VisTextField;
+import com.kotcrab.vis.ui.widget.*;
 import com.tankstars.game.Player;
 import com.tankstars.game.TankStarsGame;
 
 public class NewGameSetupScreen implements Screen {
     private TankStarsGame game;
     private Stage stage;
-    private Table table;
-    private Table rowOne;
-    private Table rowTwo;
-    private Table rowThree;
+    private VisTable root;
 
     List<String> tankList;
     SpriteDrawable tankCoalition = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition.png"))));
@@ -42,24 +36,24 @@ public class NewGameSetupScreen implements Screen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/purple-stripes-dark.jpg"))));
-        table.setFillParent(true);
-        table.setDebug(true);
-        stage.addActor(table);
+        root = new VisTable();
+        root.setDebug(true, true);
+        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/purple-stripes-dark.jpg"))));
+        root.setFillParent(true);
+        stage.addActor(root);
 
-        rowOne = new Table();
-        rowOne.setDebug(true);
-        rowTwo = new Table();
-        rowTwo.setDebug(true);
-        rowThree = new Table();
-        rowThree.setDebug(true);
+        VisTable rowOne = new VisTable();
+        VisTable rowTwo = new VisTable();
+        VisTable navElements = new VisTable();
+        rowOne.setDebug(true, true);
+        rowTwo.setDebug(true, true);
+        navElements.setDebug(true, true);
 
-        table.add(rowOne).grow();
-        table.row();
-        table.add(rowTwo).grow();
-        table.row();
-        table.add(rowThree).grow();
+        root.add(rowOne).grow();
+        root.row();
+        root.add(rowTwo).grow();
+        root.row();
+        root.add(navElements).grow();
 
         VisLabel nameLabel = new VisLabel("Enter name: ");
         rowOne.add(nameLabel).spaceRight(10);
@@ -73,13 +67,14 @@ public class NewGameSetupScreen implements Screen {
         final Image image = new Image(tankCoalition);
         rowTwo.add(image).expandX();
 
+        // Back and Next Buttons
+        navElements.defaults().expand().pad(30f);
         buttonBack = new VisTextButton("Back");
         buttonBack.getLabel();
-        rowThree.add(buttonBack).expandX().left().padLeft(20);
-
         buttonNext = new VisTextButton("Next");
         buttonNext.getLabel();
-        rowThree.add(buttonNext).expandX().right().padRight(20);
+        navElements.add(buttonBack).left();
+        navElements.add(buttonNext).right();
 
         buttonBack.addListener(new ClickListener() {
             @Override

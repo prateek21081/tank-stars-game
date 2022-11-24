@@ -70,10 +70,7 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        table.defaults()
-                .width(200)
-                .height(100)
-                .space(10);
+        table.defaults().width(160).height(80).space(30);
 
         table.add(buttonNewGame);
         table.add(buttonLoadGame);
