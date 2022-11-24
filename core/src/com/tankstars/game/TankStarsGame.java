@@ -9,7 +9,7 @@ public class TankStarsGame extends Game {
 	private Player playerB = null;
 	@Override
 	public void create () {
-		VisUI.load(VisUI.SkinScale.X1);
+		VisUI.load(VisUI.SkinScale.X2);
 		setScreen(new MainMenuScreen(this));
 	}
 

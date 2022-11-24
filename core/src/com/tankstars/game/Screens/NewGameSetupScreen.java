@@ -28,9 +28,9 @@ public class NewGameSetupScreen implements Screen {
     private Table rowThree;
 
     List<String> tankList;
-    SpriteDrawable tankCoalition = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank-coalition.png"))));
-    SpriteDrawable tankHelios = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank-helios.png"))));
-    SpriteDrawable tankMark1 = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank-mark-1.png"))));
+    SpriteDrawable tankCoalition = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition.png"))));
+    SpriteDrawable tankHelios = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/helios.png"))));
+    SpriteDrawable tankMark1 = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1.png"))));
 
     VisTextField playerName;
 
@@ -43,7 +43,7 @@ public class NewGameSetupScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("purple-stripes-dark.jpg"))));
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/purple-stripes-dark.jpg"))));
         table.setFillParent(true);
         table.setDebug(true);
         stage.addActor(table);

@@ -27,7 +27,7 @@ public class InGameMenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("tank-stars-pause-menu-bg.jpg"))));
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-pause-menu-bg.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
@@ -36,14 +36,9 @@ public class InGameMenuScreen implements Screen {
         buttonRestartGame.getLabel();
         buttonMainMenu.getLabel();
 
-        table.add(buttonRestartGame)
-                .width(200)
-                .height(100)
-                .space(10);
-        table.add(buttonMainMenu)
-                .width(200)
-                .height(100)
-                .space(10);
+        table.defaults().width(200).height(100).space(10);
+        table.add(buttonRestartGame);
+        table.add(buttonMainMenu);
 
         buttonMainMenu.addListener(new ClickListener() {
             @Override

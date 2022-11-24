@@ -38,7 +38,7 @@ public class MainMenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         table = new VisTable();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("tank-stars-banner.jpg"))));
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/tank-stars-banner.jpg"))));
         table.setFillParent(true);
         stage.addActor(table);
 
