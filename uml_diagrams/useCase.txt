@@ -1,84 +1,83 @@
 @startuml
 left to right direction
 
-actor Player1 as P1
-actor Player2 as P2
-actor Storage as S
+actor Player1 as P1 #pink;line:red;line.bold;text:red
+actor Player2 as P2 #pink;line:red;line.bold;text:red
+actor Storage as S #pink;line:red;line.bold;text:red
 
 package TankStarsGame {
 
 rectangle MainMenu {
-    usecase "New Game" as newGame
-    usecase "Load Game" as loadGame
-    usecase "Exit" as exit
+    usecase "New Game" as newGame #aliceblue;line:blue;text:blue
+    usecase "Load Game" as loadGame #aliceblue;line:blue;text:blue
+    usecase "Exit" as exit #aliceblue;line:blue;text:blue
 }
 
-
 rectangle GameSetup {
-    usecase "Select Tank" as selectTank
-    usecase "Back" as backToMenu1
+    usecase "Select Tank" as selectTank #aliceblue;line:blue;text:blue
+    usecase "Back" as backToMenu1 #aliceblue;line:blue;text:blue
 }
 
 rectangle LoadGame {
-    usecase "Select Game" as selectGame
-    usecase "Back" as backToMenu2
+    usecase "Select Game" as selectGame #aliceblue;line:blue;text:blue
+    usecase "Back" as backToMenu2 #aliceblue;line:blue;text:blue
 }
 
 rectangle StartGame {
-    usecase "Start" as startGame
+    usecase "Start" as startGame #aliceblue;line:blue;text:blue
 }
 
 rectangle Game {
-    usecase "Set angle" as setAngle
-    usecase "Set power" as setPower
-    usecase "Move tank" as moveTank
-    usecase "Fire" as fire
+    usecase "Set angle" as setAngle #aliceblue;line:blue;text:blue
+    usecase "Set power" as setPower #aliceblue;line:blue;text:blue
+    usecase "Move tank" as moveTank #aliceblue;line:blue;text:blue
+    usecase "Fire" as fire #aliceblue;line:blue;text:blue
 
     rectangle PauseMenu {
-        usecase "Resume Game" as resumeGame
-        usecase "Restart Game" as restartGame
-        usecase "Main Menu" as backToMenu
-        usecase "Save Game" as saveGame
+        usecase "Resume Game" as resumeGame #aliceblue;line:blue;text:blue
+        usecase "Restart Game" as restartGame #aliceblue;line:blue;text:blue
+        usecase "Main Menu" as backToMenu #aliceblue;line:blue;text:blue
+        usecase "Save Game" as saveGame #aliceblue;line:blue;text:blue
     }
 
     rectangle GameOver {
-        usecase "Restart Game" as restartGame
-        usecase "Main Menu" as backToMenu3
+        usecase "Restart Game" as restartGame #aliceblue;line:blue;text:blue
+        usecase "Main Menu" as backToMenu3 #aliceblue;line:blue;text:blue
     }
 }
 
 
-P1 --> newGame
-P1 --> loadGame
-P1 --> exit
+P1 --> newGame #green;text:green
+P1 --> loadGame #green;text:green
+P1 --> exit #green;text:green
 
-P1 <|-- P2
+P1 <|-- P2 #green;text:green
 
-newGame ..> selectTank : include
-newGame <.. backToMenu1 : extend
+newGame ..> selectTank #green;text:green : <<include>>
+newGame <.. backToMenu1 #green;text:green : <<extend>>
 
-loadGame ..> selectGame : include
-loadGame <.. backToMenu2 : extend
+loadGame ..> selectGame #green;text:green : <<include>>
+loadGame <.. backToMenu2 #green;text:green : <<extend>>
 
-selectTank ..> startGame : include
-selectGame ..> startGame : include
+selectTank ..> startGame #green;text:green : <<include>>
+selectGame ..> startGame #green;text:green : <<include>>
 
-startGame <.. resumeGame : extend
-startGame <.. backToMenu : extend
-startGame <.. restartGame : extend
-startGame <.. backToMenu3 : extend
+startGame <.. resumeGame #green;text:green : <<extend>>
+startGame <.. backToMenu #green;text:green : <<extend>>
+startGame <.. restartGame #green;text:green : <<extend>>
+startGame <.. backToMenu3 #green;text:green : <<extend>>
 
-startGame <.. fire : extend
-startGame <.. moveTank : extend
-fire ..> setAngle : include
-fire ..> setPower : include
+startGame <.. fire #green;text:green : <<extend>>
+startGame <.. moveTank #green;text:green : <<extend>>
+fire ..> setAngle #green;text:green : <<include>>
+fire ..> setPower #green;text:green : <<include>>
 
-backToMenu ..> MainMenu : include
-backToMenu2 ..> MainMenu : include
-backToMenu3 ..> MainMenu : include
+backToMenu ..> MainMenu #green;text:green : <<include>>
+backToMenu2 ..> MainMenu #green;text:green : <<include>>
+backToMenu3 ..> MainMenu #green;text:green : <<include>>
 
-S "1" -- "1*" saveGame
-S "1" -- "1*" loadGame
+S "1" -- "1*" saveGame #green;text:green
+S "1" -- "1*" loadGame #green;text:green
 
 }
 
