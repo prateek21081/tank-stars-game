@@ -21,7 +21,6 @@ public class MainMenuScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
     private Table table;
-    private Skin skin;
 
     TextButton buttonNewGame;
     TextButton buttonLoadGame;
@@ -34,7 +33,6 @@ public class MainMenuScreen implements Screen {
         game.setPlayerA(null);
         game.setPlayerB(null);
 
-        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -43,9 +41,9 @@ public class MainMenuScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
 
-        buttonNewGame = new TextButton("New Game", skin);
-        buttonLoadGame = new TextButton("Load Game", skin);
-        buttonExitGame = new TextButton("Exit", skin);
+        buttonNewGame = new TextButton("New Game", game.skinCustom);
+        buttonLoadGame = new TextButton("Load Game", game.skinDefault);
+        buttonExitGame = new TextButton("Exit", game.skinDefault);
         buttonNewGame.getLabel();
         buttonLoadGame.getLabel();
         buttonExitGame.getLabel();

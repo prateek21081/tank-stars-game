@@ -19,21 +19,19 @@ public class InGameMenuScreen implements Screen {
     private TankStarsGame game;
     private Stage stage;
     private Table table;
-    private Skin skin;
 
     public InGameMenuScreen (final TankStarsGame game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
 
         table = new Table();
         table.setFillParent(true);
         table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         stage.addActor(table);
 
-        TextButton buttonRestartGame = new TextButton("Restart Game", skin);
-        TextButton buttonMainMenu = new TextButton("Main Menu", skin);
+        TextButton buttonRestartGame = new TextButton("Restart Game", game.skinCustom);
+        TextButton buttonMainMenu = new TextButton("Main Menu", game.skinCustom);
         buttonRestartGame.getLabel();
         buttonMainMenu.getLabel();
 

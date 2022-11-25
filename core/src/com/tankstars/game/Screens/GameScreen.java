@@ -19,14 +19,12 @@ public class GameScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
     private Table root;
-    private Skin skin;
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
 
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
 
         root = new Table();
         root.setFillParent(true);
@@ -37,12 +35,12 @@ public class GameScreen implements Screen {
         Table btmHUD = new Table();
         Table gameView = new Table();
 
-        ProgressBar healthPlayerA = new ProgressBar(0, 100, 1, false, skin);
+        ProgressBar healthPlayerA = new ProgressBar(0, 100, 1, false, game.skinCustom);
         healthPlayerA.setValue(100);
         topHUD.add(healthPlayerA).expand().right().top().space(30).padTop(30);
-        TextButton pauseButton = new TextButton("||", skin);
+        TextButton pauseButton = new TextButton("||", game.skinDefault);
         topHUD.add(pauseButton).top().space(30).padTop(30);
-        ProgressBar healthPlayerB = new ProgressBar(0, 100, 1, false, skin);
+        ProgressBar healthPlayerB = new ProgressBar(0, 100, 1, false, game.skinCustom);
         healthPlayerB.setValue(100);
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
 
@@ -52,11 +50,11 @@ public class GameScreen implements Screen {
         root.row();
         root.add(btmHUD).grow();
 
-        Slider angleSlider = new Slider(0, 359, 1, false, skin);
+        Slider angleSlider = new Slider(0, 359, 1, false, game.skinCustom);
         btmHUD.add(angleSlider).expand().right().bottom().space(30).padBottom(30);
-        TextButton fireButton = new TextButton("Fire", skin);
+        TextButton fireButton = new TextButton("Fire", game.skinCustom);
         btmHUD.add(fireButton).bottom().space(30).padBottom(30);
-        Slider powerSlider = new Slider(0, 100, 1, false, skin);
+        Slider powerSlider = new Slider(0, 100, 1, false, game.skinCustom);
         btmHUD.add(powerSlider).expand().left().bottom().space(30).padBottom(30);
 
 

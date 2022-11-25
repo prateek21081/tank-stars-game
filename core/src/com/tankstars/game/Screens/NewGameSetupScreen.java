@@ -39,7 +39,6 @@ public class NewGameSetupScreen implements Screen {
     public NewGameSetupScreen (final TankStarsGame game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
@@ -63,22 +62,22 @@ public class NewGameSetupScreen implements Screen {
         root.row();
         root.add(navElements).grow();
 
-        Label nameLabel1 = new Label("Player One", skin);
+        Label nameLabel1 = new Label("Player One", game.skinCustom);
         rowOne.add(nameLabel1).spaceRight(10);
-        player1Name = new TextField("Player A", skin);
+        player1Name = new TextField("Player A", game.skinCustom);
         rowOne.add(player1Name).spaceRight(400).prefWidth(200f);
 
-        Label nameLabel2 = new Label("Player Two", skin);
+        Label nameLabel2 = new Label("Player Two", game.skinCustom);
         rowOne.add(nameLabel2).spaceRight(10).spaceLeft(400);
-        player2Name = new TextField("Player B", skin);
+        player2Name = new TextField("Player B", game.skinCustom);
         rowOne.add(player2Name).prefWidth(200f);
 
         //tankList = new List(skin);
-        tankListA = new SelectBox<String>(skin);
+        tankListA = new SelectBox<String>(game.skinCustom);
         tankListA.setItems(new String[] {"Coalition", "Helios", "Mark 1"});
         rowTwo.add(tankListA).growX().padLeft(200).padRight(200);
 
-        tankListB = new SelectBox<String>(skin);
+        tankListB = new SelectBox<String>(game.skinCustom);
         tankListB.setItems(new String[] {"Helios", "Coalition", "Mark 1"});
         rowTwo.add(tankListB).growX().padLeft(200).padRight(200);
 
@@ -91,9 +90,9 @@ public class NewGameSetupScreen implements Screen {
 
         // Back and Next Buttons
         navElements.defaults().expand().pad(30f);
-        buttonBack = new TextButton("Back", skin);
+        buttonBack = new TextButton("Back", game.skinCustom);
         buttonBack.getLabel();
-        buttonNext = new TextButton("Next", skin);
+        buttonNext = new TextButton("Next", game.skinCustom);
         buttonNext.getLabel();
         navElements.add(buttonBack).left();
         navElements.add(buttonNext).right();

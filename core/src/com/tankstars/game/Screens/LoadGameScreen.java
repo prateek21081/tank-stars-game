@@ -16,7 +16,6 @@ import com.tankstars.game.TankStarsGame;
 public class LoadGameScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
-    private Skin skin;
 
     public LoadGameScreen (final TankStarsGame game) {
         this.game = game;
