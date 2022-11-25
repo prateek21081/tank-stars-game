@@ -39,7 +39,7 @@ public class NewGameSetupScreen implements Screen {
     public NewGameSetupScreen (final TankStarsGame game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
-        skin = new Skin(Gdx.files.internal("skin/shimmer-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();

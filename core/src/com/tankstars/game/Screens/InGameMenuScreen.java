@@ -25,7 +25,7 @@ public class InGameMenuScreen implements Screen {
         this.game = game;
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        skin = new Skin(Gdx.files.internal("skin/shimmer-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
 
         table = new Table();
         table.setFillParent(true);

@@ -34,7 +34,7 @@ public class MainMenuScreen implements Screen {
         game.setPlayerA(null);
         game.setPlayerB(null);
 
-        skin = new Skin(Gdx.files.internal("skin/shimmer-ui.json"));
+        skin = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
