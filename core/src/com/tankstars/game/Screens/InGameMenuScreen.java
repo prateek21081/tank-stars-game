@@ -29,6 +29,7 @@ public class InGameMenuScreen implements Screen {
 
         table = new Table();
         table.setFillParent(true);
+        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         stage.addActor(table);
 
         TextButton buttonRestartGame = new TextButton("Restart Game", skin);

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -43,7 +44,7 @@ public class NewGameSetupScreen implements Screen {
 
         root = new Table();
         //root.setDebug(true, true);
-        //root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/purple-stripes-dark.jpg"))));
+        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         root.setFillParent(true);
         stage.addActor(root);
         root.padTop(50);
