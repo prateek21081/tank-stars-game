@@ -2,20 +2,20 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
-import org.w3c.dom.Text;
 
 public class MainMenuScreen implements Screen {
     private final TankStarsGame game;
@@ -25,6 +25,8 @@ public class MainMenuScreen implements Screen {
     TextButton buttonNewGame;
     TextButton buttonLoadGame;
     TextButton buttonExitGame;
+
+    Image logo = new Image(new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("logo.png")))));
 
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
@@ -39,7 +41,11 @@ public class MainMenuScreen implements Screen {
         table = new Table();
         table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         table.setFillParent(true);
+        table.setDebug(true, true);
         stage.addActor(table);
+
+        table.add(logo);
+        table.row();
 
         buttonNewGame = new TextButton("New Game", game.skinCustom);
         buttonLoadGame = new TextButton("Load Game", game.skinDefault);
@@ -72,7 +78,9 @@ public class MainMenuScreen implements Screen {
         table.defaults().width(160).height(80).space(30);
 
         table.add(buttonNewGame);
+        table.row();
         table.add(buttonLoadGame);
+        table.row();
         table.add(buttonExitGame);
     }
 

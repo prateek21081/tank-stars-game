@@ -22,7 +22,6 @@ public class GameScreen implements Screen {
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
-
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
@@ -34,6 +33,10 @@ public class GameScreen implements Screen {
         Table topHUD = new Table();
         Table btmHUD = new Table();
         Table gameView = new Table();
+
+        root.setDebug(true, true);
+        topHUD.setDebug(true, true);
+        btmHUD.setDebug(true, true);
 
         ProgressBar healthPlayerA = new ProgressBar(0, 100, 1, false, game.skinCustom);
         healthPlayerA.setValue(100);
@@ -50,12 +53,17 @@ public class GameScreen implements Screen {
         root.row();
         root.add(btmHUD).grow();
 
+        Label angleLabel = new Label("Angle : XX", game.skinCustom);
+        Label powerLabel = new Label("Health : XX", game.skinCustom);
+
+        btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
         Slider angleSlider = new Slider(0, 359, 1, false, game.skinCustom);
-        btmHUD.add(angleSlider).expand().right().bottom().space(30).padBottom(30);
+        btmHUD.add(angleSlider).expandY().right().bottom().space(30).padBottom(30);
         TextButton fireButton = new TextButton("Fire", game.skinCustom);
         btmHUD.add(fireButton).bottom().space(30).padBottom(30);
         Slider powerSlider = new Slider(0, 100, 1, false, game.skinCustom);
-        btmHUD.add(powerSlider).expand().left().bottom().space(30).padBottom(30);
+        btmHUD.add(powerSlider).expandY().left().bottom().space(30).padBottom(30);
+        btmHUD.add(powerLabel).expandY().left().bottom().space(30).padBottom(30);
 
 
         pauseButton.addListener(new ClickListener() {
@@ -126,6 +134,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }
