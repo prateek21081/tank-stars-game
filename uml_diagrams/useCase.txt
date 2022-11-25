@@ -3,27 +3,83 @@ left to right direction
 
 actor Player1 as P1
 actor Player2 as P2
+actor Storage as S
 
-package MainMenu {
+package TankStarsGame {
+
+rectangle MainMenu {
     usecase "New Game" as newGame
     usecase "Load Game" as loadGame
     usecase "Exit" as exit
 }
 
-package PauseMenu {
-    usecase "Restart Game" as resumeGame
-    usecase "Main Menu" as backToMenu
-}
 
-package GameSetup {
+rectangle GameSetup {
     usecase "Select Tank" as selectTank
     usecase "Back" as backToMenu1
 }
 
+rectangle LoadGame {
+    usecase "Select Game" as selectGame
+    usecase "Back" as backToMenu2
+}
+
+rectangle StartGame {
+    usecase "Start" as startGame
+}
+
+rectangle Game {
+    usecase "Set angle" as setAngle
+    usecase "Set power" as setPower
+    usecase "Move tank" as moveTank
+    usecase "Fire" as fire
+
+    rectangle PauseMenu {
+        usecase "Resume Game" as resumeGame
+        usecase "Restart Game" as restartGame
+        usecase "Main Menu" as backToMenu
+        usecase "Save Game" as saveGame
+    }
+
+    rectangle GameOver {
+        usecase "Restart Game" as restartGame
+        usecase "Main Menu" as backToMenu3
+    }
+}
+
+
 P1 --> newGame
+P1 --> loadGame
+P1 --> exit
 
-P1 --> selectTank
-P2 --> selectTank
+P1 <|-- P2
 
+newGame ..> selectTank : include
+newGame <.. backToMenu1 : extend
+
+loadGame ..> selectGame : include
+loadGame <.. backToMenu2 : extend
+
+selectTank ..> startGame : include
+selectGame ..> startGame : include
+
+startGame <.. resumeGame : extend
+startGame <.. backToMenu : extend
+startGame <.. restartGame : extend
+startGame <.. backToMenu3 : extend
+
+startGame <.. fire : extend
+startGame <.. moveTank : extend
+fire ..> setAngle : include
+fire ..> setPower : include
+
+backToMenu ..> MainMenu : include
+backToMenu2 ..> MainMenu : include
+backToMenu3 ..> MainMenu : include
+
+S "1" -- "1*" saveGame
+S "1" -- "1*" loadGame
+
+}
 
 @enduml
