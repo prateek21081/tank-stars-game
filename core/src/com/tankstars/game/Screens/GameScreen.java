@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
         root = new Table();
         root.setFillParent(true);
         stage.addActor(root);
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
+        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/game-background.png"))));
 
         Table topHUD = new Table();
         Table btmHUD = new Table();
