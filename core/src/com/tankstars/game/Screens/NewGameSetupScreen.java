@@ -63,14 +63,14 @@ public class NewGameSetupScreen implements Screen {
         root.row();
         root.add(navElements).grow();
 
-        Label nameLabel1 = new Label("Enter player 1 name: ", skin);
+        Label nameLabel1 = new Label("Player One", skin);
         rowOne.add(nameLabel1).spaceRight(10);
-        player1Name = new TextField("Player", skin);
-        rowOne.add(player1Name).spaceRight(275).prefWidth(200f);
+        player1Name = new TextField("Player A", skin);
+        rowOne.add(player1Name).spaceRight(400).prefWidth(200f);
 
-        Label nameLabel2 = new Label("Enter player 2 name: ", skin);
-        rowOne.add(nameLabel2).spaceRight(10).spaceLeft(275);
-        player2Name = new TextField("Player", skin);
+        Label nameLabel2 = new Label("Player Two", skin);
+        rowOne.add(nameLabel2).spaceRight(10).spaceLeft(400);
+        player2Name = new TextField("Player B", skin);
         rowOne.add(player2Name).prefWidth(200f);
 
         //tankList = new List(skin);
