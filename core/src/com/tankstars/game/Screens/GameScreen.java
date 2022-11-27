@@ -2,7 +2,6 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,13 +11,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
 
 public class GameScreen implements Screen {
     private final TankStarsGame game;
-    private Stage stage;
-    private Table root;
+    private final Stage stage;
+    private final Table root;
+    private final ProgressBar healthPlayerA;
+    private final TextButton pauseButton;
+    private final ProgressBar healthPlayerB;
+    private final Label angleLabel;
+    private final Slider angleSlider;
+    private final TextButton fireButton;
+    private final Slider powerSlider;
+    private final Label powerLabel;
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
@@ -26,46 +32,22 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
+        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/game-background.png"))));
         root.setFillParent(true);
         stage.addActor(root);
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/game-background.png"))));
 
         Table topHUD = new Table();
         Table btmHUD = new Table();
-        Table gameView = new Table();
 
-        root.setDebug(true, true);
         topHUD.setDebug(true, true);
         btmHUD.setDebug(true, true);
 
-        ProgressBar healthPlayerA = new ProgressBar(0, 100, 1, false, game.skinCustom);
-        healthPlayerA.setValue(100);
+        healthPlayerA = new ProgressBar(0, 100, 1, false, game.skinCustom);
         topHUD.add(healthPlayerA).expand().right().top().space(30).padTop(30);
-        TextButton pauseButton = new TextButton("||", game.skinDefault);
+        healthPlayerA.setValue(100);
+
+        pauseButton = new TextButton("||", game.skinDefault);
         topHUD.add(pauseButton).top().space(30).padTop(30);
-        ProgressBar healthPlayerB = new ProgressBar(0, 100, 1, false, game.skinCustom);
-        healthPlayerB.setValue(100);
-        topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
-
-        root.add(topHUD).grow();
-        root.row();
-        root.add(gameView).grow();
-        root.row();
-        root.add(btmHUD).grow();
-
-        Label angleLabel = new Label("Angle : XX", game.skinCustom);
-        Label powerLabel = new Label("Health : XX", game.skinCustom);
-
-        btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
-        Slider angleSlider = new Slider(0, 359, 1, false, game.skinCustom);
-        btmHUD.add(angleSlider).expandY().right().bottom().space(30).padBottom(30);
-        TextButton fireButton = new TextButton("Fire", game.skinCustom);
-        btmHUD.add(fireButton).bottom().space(30).padBottom(30);
-        Slider powerSlider = new Slider(0, 100, 1, false, game.skinCustom);
-        btmHUD.add(powerSlider).expandY().left().bottom().space(30).padBottom(30);
-        btmHUD.add(powerLabel).expandY().left().bottom().space(30).padBottom(30);
-
-
         pauseButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -74,13 +56,15 @@ public class GameScreen implements Screen {
             }
         });
 
-        fireButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                // Tank fire
-            }
-        });
+        healthPlayerB = new ProgressBar(0, 100, 1, false, game.skinCustom);
+        topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
+        healthPlayerB.setValue(100);
 
+        angleLabel = new Label("Angle : XX", game.skinCustom);
+        btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
+
+        angleSlider = new Slider(0, 359, 1, false, game.skinCustom);
+        btmHUD.add(angleSlider).expandY().right().bottom().space(30).padBottom(30);
         angleSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -89,6 +73,17 @@ public class GameScreen implements Screen {
             }
         });
 
+        fireButton = new TextButton("Fire", game.skinCustom);
+        btmHUD.add(fireButton).bottom().space(30).padBottom(30);
+        fireButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // Tank fire
+            }
+        });
+
+        powerSlider = new Slider(0, 100, 1, false, game.skinCustom);
+        btmHUD.add(powerSlider).expandY().left().bottom().space(30).padBottom(30);
         powerSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -96,6 +91,12 @@ public class GameScreen implements Screen {
                 //System.out.println(slider.getValue());
             }
         });
+
+        powerLabel = new Label("Power : XX", game.skinCustom);
+        btmHUD.add(powerLabel).expandY().left().bottom().space(30).padBottom(30);
+
+        root.add(topHUD).grow().row();
+        root.add(btmHUD).grow();
     }
 
     @Override
@@ -105,9 +106,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         stage.act();
         stage.draw();
     }

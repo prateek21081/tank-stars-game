@@ -7,38 +7,51 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
 
 public class InGameMenuScreen implements Screen {
-    private TankStarsGame game;
-    private Stage stage;
-    private Table table;
+    private final TankStarsGame game;
+    private final Stage stage;
+    private final Table root;
+
+    private final TextButton buttonRestartGame;
+    private final TextButton buttonSaveGame;
+    private final TextButton buttonMainMenu;
 
     public InGameMenuScreen (final TankStarsGame game) {
         this.game = game;
         stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
-        table = new Table();
-        table.setFillParent(true);
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
-        stage.addActor(table);
+        root = new Table();
+        root.setFillParent(true);
+        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
+        stage.addActor(root);
 
-        TextButton buttonRestartGame = new TextButton("Restart Game", game.skinCustom);
-        TextButton buttonMainMenu = new TextButton("Main Menu", game.skinCustom);
-        buttonRestartGame.getLabel();
-        buttonMainMenu.getLabel();
+        buttonRestartGame = new TextButton("Restart Game", game.skinCustom);
+        buttonRestartGame.addListener(new ClickListener() {
+            @Override
+            public void clicked (InputEvent event, float x, float y) {
+                game.setScreen(new GameScreen(game));
+                dispose();
+            }
+        });
 
-        table.defaults().width(200).height(100).space(10);
-        table.add(buttonRestartGame);
-        table.add(buttonMainMenu);
+        buttonSaveGame = new TextButton("Save game", game.skinCustom);
+        buttonSaveGame.addListener(new ClickListener() {
+            @Override
+            public void clicked (InputEvent event, float x, float y) {
+                game.setScreen(new MainMenuScreen(game));
+                dispose();
+            }
+        });
 
+
+        buttonMainMenu = new TextButton("Main Menu", game.skinCustom);
         buttonMainMenu.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -46,6 +59,11 @@ public class InGameMenuScreen implements Screen {
                 dispose();
             }
         });
+
+        root.defaults().width(200).height(100).space(10);
+        root.add(buttonRestartGame);
+        root.add(buttonRestartGame);
+        root.add(buttonMainMenu);
     }
 
 

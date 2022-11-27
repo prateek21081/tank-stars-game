@@ -2,7 +2,6 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,46 +13,34 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.tankstars.game.TankStarsGame;
 
 public class MainMenuScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
-    private Table table;
+    private Table root;
+    private Image logo;
 
-    TextButton buttonNewGame;
-    TextButton buttonLoadGame;
-    TextButton buttonExitGame;
-
-    Image logo = new Image(new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("logo.png")))));
+    private TextButton buttonNewGame;
+    private TextButton buttonLoadGame;
+    private TextButton buttonExitGame;
 
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
 
-        // reset player status here for now.
-        game.setPlayerA(null);
-        game.setPlayerB(null);
-
         stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
-        table = new Table();
-        table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
-        table.setFillParent(true);
-        table.setDebug(true, true);
-        stage.addActor(table);
+        root = new Table();
+        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
+        root.setFillParent(true);
+        root.setDebug(true, true);
+        stage.addActor(root);
 
-        table.add(logo);
-        table.row();
+        logo = new Image(new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("logo.png")))));
+        root.add(logo).row();
 
         buttonNewGame = new TextButton("New Game", game.skinCustom);
-        buttonLoadGame = new TextButton("Load Game", game.skinDefault);
-        buttonExitGame = new TextButton("Exit", game.skinDefault);
-        buttonNewGame.getLabel();
-        buttonLoadGame.getLabel();
-        buttonExitGame.getLabel();
-
         buttonNewGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -61,12 +48,16 @@ public class MainMenuScreen implements Screen {
                 dispose();
             }
         });
+
+        buttonExitGame = new TextButton("Exit", game.skinDefault);
         buttonExitGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
+
+        buttonLoadGame = new TextButton("Load Game", game.skinDefault);
         buttonLoadGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -75,13 +66,10 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        table.defaults().width(160).height(80).space(30);
-
-        table.add(buttonNewGame);
-        table.row();
-        table.add(buttonLoadGame);
-        table.row();
-        table.add(buttonExitGame);
+        root.defaults().width(160).height(80).space(30);
+        root.add(buttonNewGame).row();
+        root.add(buttonLoadGame).row();
+        root.add(buttonExitGame);
     }
 
 
@@ -92,9 +80,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         stage.act();
         stage.draw();
     }
