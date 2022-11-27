@@ -2,8 +2,10 @@ package com.tankstars.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.tankstars.game.Screens.GameScreen;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tankstars.game.Screens.MainMenuScreen;
 
 public class TankStarsGame extends Game {
@@ -12,11 +14,15 @@ public class TankStarsGame extends Game {
 
 	public Skin skinCustom;
 	public Skin skinDefault;
-	
+
+	OrthographicCamera camera;
+	public Viewport viewport;
 	@Override
 	public void create () {
 		skinCustom = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
 		skinDefault = new Skin(Gdx.files.internal("skin-default/shimmer-ui.json"));
+		camera =  new OrthographicCamera();
+		viewport = new FitViewport(1366, 768, camera);
 		setScreen(new MainMenuScreen(this));
 	}
 

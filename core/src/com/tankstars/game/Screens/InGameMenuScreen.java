@@ -22,7 +22,7 @@ public class InGameMenuScreen implements Screen {
 
     public InGameMenuScreen (final TankStarsGame game) {
         this.game = game;
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
@@ -65,7 +65,7 @@ public class InGameMenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        game.viewport.update(width, height);
     }
 
     @Override

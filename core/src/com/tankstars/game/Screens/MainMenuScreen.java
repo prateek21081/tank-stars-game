@@ -35,7 +35,7 @@ public class MainMenuScreen implements Screen {
         game.setPlayerA(null);
         game.setPlayerB(null);
 
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
         table = new Table();
@@ -101,7 +101,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        game.viewport.update(width, height);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class NewGameSetupScreen implements Screen {
 
     public NewGameSetupScreen (final TankStarsGame game) {
         this.game = game;
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
@@ -167,7 +167,7 @@ public class NewGameSetupScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        game.viewport.update(width, height);
     }
 
     @Override
