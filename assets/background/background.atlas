@@ -1,0 +1,500 @@
+
+background.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+00
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+01
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+02
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+03
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background3.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+04
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+05
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background4.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+06
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+07
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background5.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+08
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+09
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background6.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+10
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+11
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background7.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+12
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+13
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background8.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+14
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+15
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background9.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+16
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+17
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background10.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+18
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+19
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background11.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+20
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+21
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background12.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+22
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+23
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background13.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+24
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+25
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background14.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+26
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+27
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background15.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+28
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+29
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background16.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+30
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+31
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background17.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+32
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+33
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background18.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+34
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+35
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background19.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+36
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+37
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background20.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+38
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+39
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background21.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+40
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+41
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background22.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+42
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+43
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background23.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+44
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+45
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background24.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+46
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+47
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+
+background25.png
+size: 2048, 2048
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+48
+  rotate: false
+  xy: 2, 4
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1
+49
+  rotate: false
+  xy: 2, 737
+  size: 1600, 731
+  orig: 1600, 731
+  offset: 0, 0
+  index: -1

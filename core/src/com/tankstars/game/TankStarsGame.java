@@ -20,7 +20,7 @@ public class TankStarsGame extends Game {
 
 	public Skin skin;
 
-	OrthographicCamera camera;
+	public OrthographicCamera camera;
 	public Viewport viewport;
 	@Override
 	public void create () {
@@ -28,6 +28,7 @@ public class TankStarsGame extends Game {
 
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(1366, 768, camera);
+		viewport.apply();
 		setScreen(new MainMenuScreen(this));
 	}
 

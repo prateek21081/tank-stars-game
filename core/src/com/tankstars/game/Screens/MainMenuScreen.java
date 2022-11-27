@@ -2,6 +2,7 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -19,15 +20,25 @@ public class MainMenuScreen implements Screen {
     private TextButton buttonLoadGame;
     private TextButton buttonExitGame;
 
+    private SpriteBatch batch;
+    private TextureAtlas textureAtlas;
+    private Animation<TextureRegion> animation;
+    private float elapsedTime = 0f;
+
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
+        batch = new SpriteBatch();
 
         stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
+//        sprite.setPosition(game.camera.viewportWidth / 2 - sprite.getWidth() / 2, game.camera.viewportHeight /2 - sprite.getHeight() / 2);
+        textureAtlas = new TextureAtlas(Gdx.files.internal("background/background.atlas"));
+        animation = new Animation(1/10f, textureAtlas.getRegions());
+
         root = new Table();
         root.setFillParent(true);
-        root.setDebug(true, true);
+//        root.setDebug(true, true);
         stage.addActor(root);
 
         buttonNewGame = new TextButton("New Game", game.skin);
@@ -70,7 +81,13 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        elapsedTime += delta;
         ScreenUtils.clear(0, 0, 0, 0);
+        batch.setProjectionMatrix(game.camera.combined);
+        batch.begin();
+        batch.draw(animation.getKeyFrame(elapsedTime, true), 0, 0);
+        batch.end();
+
         stage.act();
         stage.draw();
     }
@@ -78,6 +95,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         game.viewport.update(width, height);
+        game.camera.position.set(game.camera.viewportWidth / 2, game.camera.viewportHeight / 2, 0);
     }
 
     @Override
@@ -97,6 +115,8 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
+        batch.dispose();
+        textureAtlas.dispose();
         stage.dispose();
     }
 }
