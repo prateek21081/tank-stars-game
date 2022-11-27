@@ -58,7 +58,7 @@ public class GameScreen implements Screen {
 
         healthPlayerB = new ProgressBar(0, 100, 1, false, game.skinCustom);
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
-        healthPlayerB.setValue(100);
+        healthPlayerB.setValue(90);
 
         angleLabel = new Label("Angle : XX", game.skinCustom);
         btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);

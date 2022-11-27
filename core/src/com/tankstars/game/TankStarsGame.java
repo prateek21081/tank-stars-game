@@ -19,8 +19,8 @@ public class TankStarsGame extends Game {
 	public Viewport viewport;
 	@Override
 	public void create () {
-		skinCustom = new Skin(Gdx.files.internal("skin-custom/shimmer-ui.json"));
-		skinDefault = new Skin(Gdx.files.internal("skin-default/shimmer-ui.json"));
+		skinCustom = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
+		skinDefault = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(1366, 768, camera);
 		setScreen(new MainMenuScreen(this));
