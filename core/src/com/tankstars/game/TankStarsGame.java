@@ -27,7 +27,7 @@ public class TankStarsGame extends Game {
 		skin = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
 
 		camera =  new OrthographicCamera();
-		viewport = new FitViewport(1366, 768, camera);
+		viewport = new FitViewport(1600, 731, camera);
 		viewport.apply();
 		setScreen(new MainMenuScreen(this));
 	}
