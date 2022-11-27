@@ -12,15 +12,13 @@ public class TankStarsGame extends Game {
 	private Player playerA = null;
 	private Player playerB = null;
 
-	public Skin skinCustom;
-	public Skin skinDefault;
+	public Skin skin;
 
 	OrthographicCamera camera;
 	public Viewport viewport;
 	@Override
 	public void create () {
-		skinCustom = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
-		skinDefault = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
+		skin = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(1366, 768, camera);
 		setScreen(new MainMenuScreen(this));
@@ -33,8 +31,8 @@ public class TankStarsGame extends Game {
 	
 	@Override
 	public void dispose () {
-		skinCustom.dispose();
-		skinDefault.dispose();
+		skin.dispose();
+		skin.dispose();
 	}
 
 	public Player getPlayerA() {

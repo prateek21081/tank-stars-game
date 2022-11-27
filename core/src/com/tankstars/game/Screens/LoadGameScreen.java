@@ -30,7 +30,7 @@ public class LoadGameScreen implements Screen {
         root.setDebug(true, true);
         stage.addActor(root);
 
-        buttonNext = new TextButton("Next", game.skinCustom);
+        buttonNext = new TextButton("Next", game.skin);
         buttonNext.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -40,7 +40,7 @@ public class LoadGameScreen implements Screen {
             }
         });
 
-        buttonBack = new TextButton("Back", game.skinCustom);
+        buttonBack = new TextButton("Back", game.skin);
         buttonBack.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {

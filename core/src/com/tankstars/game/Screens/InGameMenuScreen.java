@@ -32,7 +32,7 @@ public class InGameMenuScreen implements Screen {
         root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         stage.addActor(root);
 
-        buttonRestartGame = new TextButton("Restart Game", game.skinCustom);
+        buttonRestartGame = new TextButton("Restart Game", game.skin);
         buttonRestartGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -41,7 +41,7 @@ public class InGameMenuScreen implements Screen {
             }
         });
 
-        buttonSaveGame = new TextButton("Save game", game.skinCustom);
+        buttonSaveGame = new TextButton("Save game", game.skin);
         buttonSaveGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -51,7 +51,7 @@ public class InGameMenuScreen implements Screen {
         });
 
 
-        buttonMainMenu = new TextButton("Main Menu", game.skinCustom);
+        buttonMainMenu = new TextButton("Main Menu", game.skin);
         buttonMainMenu.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {

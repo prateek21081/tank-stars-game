@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.TankStarsGame;
 
 public class GameScreen implements Screen {
@@ -32,7 +33,6 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/game-background.png"))));
         root.setFillParent(true);
         stage.addActor(root);
 
@@ -42,11 +42,11 @@ public class GameScreen implements Screen {
         topHUD.setDebug(true, true);
         btmHUD.setDebug(true, true);
 
-        healthPlayerA = new ProgressBar(0, 100, 1, false, game.skinCustom);
+        healthPlayerA = new ProgressBar(0, 100, 1, false, game.skin);
         topHUD.add(healthPlayerA).expand().right().top().space(30).padTop(30);
         healthPlayerA.setValue(100);
 
-        pauseButton = new TextButton("||", game.skinDefault);
+        pauseButton = new TextButton("||", game.skin);
         topHUD.add(pauseButton).top().space(30).padTop(30);
         pauseButton.addListener(new ClickListener() {
             @Override
@@ -56,14 +56,14 @@ public class GameScreen implements Screen {
             }
         });
 
-        healthPlayerB = new ProgressBar(0, 100, 1, false, game.skinCustom);
+        healthPlayerB = new ProgressBar(0, 100, 1, false, game.skin);
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
         healthPlayerB.setValue(90);
 
-        angleLabel = new Label("Angle : XX", game.skinCustom);
+        angleLabel = new Label("Angle : XX", game.skin);
         btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
 
-        angleSlider = new Slider(0, 359, 1, false, game.skinCustom);
+        angleSlider = new Slider(0, 359, 1, false, game.skin);
         btmHUD.add(angleSlider).expandY().right().bottom().space(30).padBottom(30);
         angleSlider.addListener(new ChangeListener() {
             @Override
@@ -73,7 +73,7 @@ public class GameScreen implements Screen {
             }
         });
 
-        fireButton = new TextButton("Fire", game.skinCustom);
+        fireButton = new TextButton("Fire", game.skin);
         btmHUD.add(fireButton).bottom().space(30).padBottom(30);
         fireButton.addListener(new ClickListener() {
             @Override
@@ -82,7 +82,7 @@ public class GameScreen implements Screen {
             }
         });
 
-        powerSlider = new Slider(0, 100, 1, false, game.skinCustom);
+        powerSlider = new Slider(0, 100, 1, false, game.skin);
         btmHUD.add(powerSlider).expandY().left().bottom().space(30).padBottom(30);
         powerSlider.addListener(new ChangeListener() {
             @Override
@@ -92,7 +92,7 @@ public class GameScreen implements Screen {
             }
         });
 
-        powerLabel = new Label("Power : XX", game.skinCustom);
+        powerLabel = new Label("Power : XX", game.skin);
         btmHUD.add(powerLabel).expandY().left().bottom().space(30).padBottom(30);
 
         root.add(topHUD).grow().row();
@@ -106,6 +106,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 0);
         stage.act();
         stage.draw();
     }

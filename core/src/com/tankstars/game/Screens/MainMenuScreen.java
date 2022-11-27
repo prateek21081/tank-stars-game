@@ -3,23 +3,20 @@ package com.tankstars.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.TankStarsGame;
 
 public class MainMenuScreen implements Screen {
     private final TankStarsGame game;
     private Stage stage;
     private Table root;
-    private Image logo;
 
     private TextButton buttonNewGame;
     private TextButton buttonLoadGame;
@@ -32,15 +29,11 @@ public class MainMenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         root.setFillParent(true);
         root.setDebug(true, true);
         stage.addActor(root);
 
-        logo = new Image(new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("logo.png")))));
-        root.add(logo).row();
-
-        buttonNewGame = new TextButton("New Game", game.skinCustom);
+        buttonNewGame = new TextButton("New Game", game.skin);
         buttonNewGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -49,7 +42,7 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        buttonExitGame = new TextButton("Exit", game.skinDefault);
+        buttonExitGame = new TextButton("Exit", game.skin);
         buttonExitGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -57,7 +50,7 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        buttonLoadGame = new TextButton("Load Game", game.skinDefault);
+        buttonLoadGame = new TextButton("Load Game", game.skin);
         buttonLoadGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -66,7 +59,7 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        root.defaults().width(160).height(80).space(30);
+        root.defaults().width(200).height(80).space(30);
         root.add(buttonNewGame).row();
         root.add(buttonLoadGame).row();
         root.add(buttonExitGame);
@@ -80,6 +73,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 0);
         stage.act();
         stage.draw();
     }

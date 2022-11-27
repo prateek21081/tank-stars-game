@@ -4,13 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.tankstars.game.Player;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.TankStarsGame;
 
 public class NewGameSetupScreen implements Screen {
@@ -40,7 +38,6 @@ public class NewGameSetupScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         root.setFillParent(true);
         stage.addActor(root);
         root.padTop(50);
@@ -60,13 +57,13 @@ public class NewGameSetupScreen implements Screen {
         root.add(rowThree).grow().row();
         root.add(rowFour).grow();
 
-        Label nameLabel1 = new Label("Player One", game.skinCustom);
-        player1Name = new TextField("Player A", game.skinCustom);
+        Label nameLabel1 = new Label("Player One", game.skin);
+        player1Name = new TextField("Player A", game.skin);
         rowOne.add(nameLabel1).spaceRight(10);
         rowOne.add(player1Name).spaceRight(400).prefWidth(200f);
 
-        Label nameLabel2 = new Label("Player Two", game.skinCustom);
-        player2Name = new TextField("Player B", game.skinCustom);
+        Label nameLabel2 = new Label("Player Two", game.skin);
+        player2Name = new TextField("Player B", game.skin);
         rowOne.add(nameLabel2).spaceRight(10).spaceLeft(400);
         rowOne.add(player2Name).prefWidth(200f);
 
@@ -125,7 +122,7 @@ public class NewGameSetupScreen implements Screen {
 //            }
 //        });
 
-        buttonNext = new TextButton("Next", game.skinCustom);
+        buttonNext = new TextButton("Next", game.skin);
         buttonNext.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -136,7 +133,7 @@ public class NewGameSetupScreen implements Screen {
             }
         });
 
-        buttonBack = new TextButton("Back", game.skinCustom);
+        buttonBack = new TextButton("Back", game.skin);
         buttonBack.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
@@ -157,6 +154,7 @@ public class NewGameSetupScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 0);
         stage.act();
         stage.draw();
     }
