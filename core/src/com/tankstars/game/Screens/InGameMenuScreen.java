@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.TankStarsGame;
 
 public class InGameMenuScreen implements Screen {
@@ -29,7 +30,6 @@ public class InGameMenuScreen implements Screen {
 
         root = new Table();
         root.setFillParent(true);
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         stage.addActor(root);
 
         buttonRestartGame = new TextButton("Restart Game", game.skin);
@@ -74,8 +74,7 @@ public class InGameMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        ScreenUtils.clear(0, 0, 0, 0);
 
         stage.act();
         stage.draw();

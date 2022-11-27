@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ray3k.stripe.FreeTypeSkin;
 import com.tankstars.game.Screens.MainMenuScreen;
 
 public class TankStarsGame extends Game {
@@ -18,7 +19,7 @@ public class TankStarsGame extends Game {
 	public Viewport viewport;
 	@Override
 	public void create () {
-		skin = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
+		skin = new FreeTypeSkin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(1366, 768, camera);
 		setScreen(new MainMenuScreen(this));

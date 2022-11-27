@@ -2,14 +2,12 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.TankStarsGame;
 
 public class LoadGameScreen implements Screen {
@@ -25,7 +23,6 @@ public class LoadGameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         root = new Table();
-        root.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("background/background.png"))));
         root.setFillParent(true);
         root.setDebug(true, true);
         stage.addActor(root);
@@ -61,6 +58,7 @@ public class LoadGameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 0);
         stage.act();
         stage.draw();
     }
