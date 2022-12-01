@@ -20,7 +20,6 @@ public class MainMenuScreen implements Screen {
     private TextButton buttonLoadGame;
     private TextButton buttonExitGame;
 
-    private float elapsedTime = 0f;
 
     public MainMenuScreen (final TankStarsGame game) {
         this.game = game;
@@ -75,13 +74,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        elapsedTime += delta;
-        ScreenUtils.clear(0, 0, 0, 0);
-        game.batch.setProjectionMatrix(game.camera.combined);
-        game.batch.begin();
-        game.batch.draw(game.animation.getKeyFrame(elapsedTime, true), 0, 0);
-        game.batch.end();
-
+        game.renderBackground(delta);
         stage.act();
         stage.draw();
     }

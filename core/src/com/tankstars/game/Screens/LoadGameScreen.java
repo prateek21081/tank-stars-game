@@ -58,7 +58,7 @@ public class LoadGameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0, 0);
+        game.renderBackground(delta);
         stage.act();
         stage.draw();
     }

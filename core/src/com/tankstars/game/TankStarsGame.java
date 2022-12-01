@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tankstars.game.Screens.MainMenuScreen;
@@ -26,6 +27,7 @@ public class TankStarsGame extends Game {
 	public SpriteBatch batch;
 	public TextureAtlas textureAtlas;
 	public Animation<TextureRegion> animation;
+	private float elapsedTime;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -33,6 +35,7 @@ public class TankStarsGame extends Game {
 
 		textureAtlas = new TextureAtlas(Gdx.files.internal("background/background.atlas"));
 		animation = new Animation(1/10f, textureAtlas.getRegions());
+		elapsedTime = 0f;
 
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(1600, 731, camera);
@@ -68,5 +71,14 @@ public class TankStarsGame extends Game {
 
 	public void setPlayerB(Player playerB) {
 		this.playerB = playerB;
+	}
+
+	public void renderBackground(float delta) {
+		elapsedTime += delta;
+		ScreenUtils.clear(0, 0, 0, 0);
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+		batch.draw(animation.getKeyFrame(elapsedTime, true), 0, 0);
+		batch.end();
 	}
 }
