@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.tankstars.game.Player;
 import com.tankstars.game.TankStarsGame;
 
 public class NewGameSetupScreen implements Screen {
@@ -61,11 +62,11 @@ public class NewGameSetupScreen implements Screen {
         Label nameLabel1 = new Label("Player One", game.skin);
         player1Name = new TextField("Player A", game.skin);
         rowOne.add(nameLabel1).spaceRight(10);
-        rowOne.add(player1Name).spaceRight(400).prefWidth(200f);
+        rowOne.add(player1Name).spaceRight(500).prefWidth(200f);
 
         Label nameLabel2 = new Label("Player Two", game.skin);
         player2Name = new TextField("Player B", game.skin);
-        rowOne.add(nameLabel2).spaceRight(10).spaceLeft(400);
+        rowOne.add(nameLabel2).spaceRight(10).spaceLeft(500);
         rowOne.add(player2Name).prefWidth(200f);
 
         tankListA = new List<String>(game.skin);
@@ -84,8 +85,8 @@ public class NewGameSetupScreen implements Screen {
         tankMarkOneB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1-mirrored.png"))));
         final Image imageA = new Image(tankCoalitionA);
         final Image imageB = new Image(tankHeliosB);
-        rowThree.add(imageA).expandX();
-        rowThree.add(imageB).expandX();
+        rowThree.add(imageA).maxSize(300, 300).spaceRight(500);
+        rowThree.add(imageB).maxSize(300, 300).spaceLeft(500);
 
         tankListA.addListener(new ChangeListener() {
             @Override
@@ -127,8 +128,9 @@ public class NewGameSetupScreen implements Screen {
         buttonNext.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
-//                game.setPlayerA(new Player(player1Name.getText(), tankSelectBoxA.getSelected()));
-//                game.setPlayerB(new Player(player2Name.getText(), tankSelectBoxB.getSelected()));
+                game.setPlayerA(new Player(player1Name.getText(), tankListA.getSelected()));
+
+                game.setPlayerB(new Player(player2Name.getText(), tankListB.getSelected()));
                 game.setScreen(new GameScreen(game));
                 dispose();
             }

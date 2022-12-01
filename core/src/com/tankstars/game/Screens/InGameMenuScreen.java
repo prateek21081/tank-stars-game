@@ -2,16 +2,11 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.TankStarsGame;
 
 public class InGameMenuScreen implements Screen {
@@ -62,7 +57,7 @@ public class InGameMenuScreen implements Screen {
 
         root.defaults().width(200).height(100).space(10);
         root.add(buttonRestartGame);
-        root.add(buttonRestartGame);
+        root.add(buttonSaveGame);
         root.add(buttonMainMenu);
     }
 
