@@ -2,20 +2,17 @@ package com.tankstars.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tankstars.game.Screens.MainMenuScreen;
 
 public class TankStarsGame extends Game {
+	public final int VIEWPORT_WIDTH = 1600;
+	public final int VIEWPORT_HEIGHT = 731;
 	private Player playerA = null;
 	private Player playerB = null;
 
@@ -38,7 +35,7 @@ public class TankStarsGame extends Game {
 		elapsedTime = 0f;
 
 		camera =  new OrthographicCamera();
-		viewport = new FitViewport(1600, 731, camera);
+		viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, camera);
 		viewport.apply();
 		setScreen(new MainMenuScreen(this));
 	}

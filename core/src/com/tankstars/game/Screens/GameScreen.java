@@ -3,16 +3,15 @@ package com.tankstars.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.tankstars.game.Arena;
 import com.tankstars.game.TankStarsGame;
+import com.tankstars.game.Terrain;
 
 public class GameScreen implements Screen {
     private final TankStarsGame game;
@@ -26,9 +25,16 @@ public class GameScreen implements Screen {
     private final TextButton fireButton;
     private final Slider powerSlider;
     private final Label powerLabel;
+    private final Arena arena;
+    private final Terrain terrain;
+    private Texture terrainImg;
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
+
+        arena = new Arena();
+        terrain = new Terrain(game.VIEWPORT_WIDTH, game.VIEWPORT_HEIGHT);
+
         stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 
@@ -39,8 +45,8 @@ public class GameScreen implements Screen {
         Table topHUD = new Table();
         Table btmHUD = new Table();
 
-        topHUD.setDebug(true, true);
-        btmHUD.setDebug(true, true);
+        //topHUD.setDebug(true, true);
+        //btmHUD.setDebug(true, true);
 
         healthPlayerA = new ProgressBar(0, 100, 1, false, game.skin);
         topHUD.add(healthPlayerA).expand().right().top().space(30).padTop(30);
@@ -97,6 +103,9 @@ public class GameScreen implements Screen {
 
         root.add(topHUD).grow().row();
         root.add(btmHUD).grow();
+
+        // create a new terrain image
+        terrainImg = terrain.getTexture();
     }
 
     @Override
@@ -107,6 +116,13 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         game.renderBackground(delta);
+
+        arena.debugRenderer.render(arena.world, game.camera.combined);
+        game.batch.setProjectionMatrix(game.camera.combined);
+        game.batch.begin();
+//		batch.draw(img, 200, 200);
+        game.batch.draw(terrainImg, 0, 0);
+        game.batch.end();
 
         stage.act();
         stage.draw();

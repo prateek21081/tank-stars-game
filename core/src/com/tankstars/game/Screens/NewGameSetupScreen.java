@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.tankstars.game.Player;
 import com.tankstars.game.TankStarsGame;
 
@@ -129,7 +128,6 @@ public class NewGameSetupScreen implements Screen {
             @Override
             public void clicked (InputEvent event, float x, float y) {
                 game.setPlayerA(new Player(player1Name.getText(), tankListA.getSelected()));
-
                 game.setPlayerB(new Player(player2Name.getText(), tankListB.getSelected()));
                 game.setScreen(new GameScreen(game));
                 dispose();
