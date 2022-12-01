@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Json;
@@ -22,9 +22,17 @@ public class TankStarsGame extends Game {
 
 	public OrthographicCamera camera;
 	public Viewport viewport;
+
+	public SpriteBatch batch;
+	public TextureAtlas textureAtlas;
+	public Animation<TextureRegion> animation;
 	@Override
 	public void create () {
+		batch = new SpriteBatch();
 		skin = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
+
+		textureAtlas = new TextureAtlas(Gdx.files.internal("background/background.atlas"));
+		animation = new Animation(1/10f, textureAtlas.getRegions());
 
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(1600, 731, camera);
@@ -41,6 +49,8 @@ public class TankStarsGame extends Game {
 	public void dispose () {
 		skin.dispose();
 		skin.dispose();
+		textureAtlas.dispose();
+		batch.dispose();
 	}
 
 
