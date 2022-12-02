@@ -80,12 +80,12 @@ public class NewGameSetupScreen implements Screen {
         tankCoalitionB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition-mirrored.png"))));
         tankHeliosA = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/helios.png"))));
         tankHeliosB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/helios-mirrored.png"))));
-        tankMarkOneA = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1.png"))));
-        tankMarkOneB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-1-mirrored.png"))));
+        tankMarkOneA = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-one.png"))));
+        tankMarkOneB = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/mark-one-mirrored.png"))));
         final Image imageA = new Image(tankCoalitionA);
         final Image imageB = new Image(tankHeliosB);
-        rowThree.add(imageA).maxSize(300, 300).spaceRight(500);
-        rowThree.add(imageB).maxSize(300, 300).spaceLeft(500);
+        rowThree.add(imageA).size(300, 300).spaceRight(500);
+        rowThree.add(imageB).size(300, 300).spaceLeft(500);
 
         tankListA.addListener(new ChangeListener() {
             @Override
@@ -98,7 +98,7 @@ public class NewGameSetupScreen implements Screen {
                     case "Helios":
                         imageA.setDrawable(tankHeliosA);
                         break;
-                    case "Mark 1":
+                    case "MarkOne":
                         imageA.setDrawable(tankMarkOneA);
                         break;
                 }
@@ -116,7 +116,7 @@ public class NewGameSetupScreen implements Screen {
                     case "Helios":
                         imageB.setDrawable(tankHeliosB);
                         break;
-                    case "Mark 1":
+                    case "MarkOne":
                         imageB.setDrawable(tankMarkOneB);
                         break;
                 }
