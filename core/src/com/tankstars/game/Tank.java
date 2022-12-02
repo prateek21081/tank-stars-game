@@ -2,7 +2,7 @@ package com.tankstars.game;
 
 import java.util.ArrayList;
 
-public class Tank {
+public abstract class Tank {
     private Integer fuel;
     private Integer health;
     // private Integer Position; // finalize how to handle position.

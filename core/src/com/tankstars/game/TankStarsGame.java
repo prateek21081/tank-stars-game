@@ -31,7 +31,7 @@ public class TankStarsGame extends Game {
 		skin = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
 
 		textureAtlas = new TextureAtlas(Gdx.files.internal("background/background.atlas"));
-		animation = new Animation(1/10f, textureAtlas.getRegions());
+		animation = new Animation(1/5f, textureAtlas.getRegions());
 		elapsedTime = 0f;
 
 		camera =  new OrthographicCamera();

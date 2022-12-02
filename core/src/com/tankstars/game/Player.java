@@ -9,7 +9,17 @@ public class Player {
     }
 
     public void createTank (String tankName) {
-        this.tank = new Tank();
+        switch (tankName) {
+            case "Helios":
+                tank = new TankHelios();
+                break;
+            case "Coalition":
+                tank = new TankCoalition();
+                break;
+            case "MarkOne":
+                tank = new TankMarkOne();
+                break;
+        }
     }
 
     public void play () {

@@ -69,11 +69,11 @@ public class NewGameSetupScreen implements Screen {
         rowOne.add(player2Name).prefWidth(200f);
 
         tankListA = new List<String>(game.skin);
-        tankListA.setItems("Coalition", "Helios", "Mark 1");
+        tankListA.setItems("Coalition", "Helios", "MarkOne");
         rowTwo.add(tankListA).growX().padLeft(200).padRight(200);
 
         tankListB = new List<String>(game.skin);
-        tankListB.setItems("Helios", "Mark 1", "Coalition");
+        tankListB.setItems("Helios", "MarkOne", "Coalition");
         rowTwo.add(tankListB).growX().padLeft(200).padRight(200);
 
         tankCoalitionA = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("tank/coalition.png"))));
