@@ -2,16 +2,13 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.tankstars.game.Arena;
 import com.tankstars.game.TankStarsGame;
-import com.tankstars.game.Terrain;
 
 public class GameScreen implements Screen {
     private final TankStarsGame game;
@@ -25,7 +22,6 @@ public class GameScreen implements Screen {
     private final TextButton fireButton;
     private final Slider powerSlider;
     private final Label powerLabel;
-    private Texture terrainImg;
     private float power;
     private float angle;
 
@@ -108,8 +104,6 @@ public class GameScreen implements Screen {
         root.add(topHUD).grow().row();
         root.add(btmHUD).grow();
 
-        // create a new terrain image
-        terrainImg = game.arena.getTerrain().getTexture();
     }
 
     @Override
@@ -122,10 +116,17 @@ public class GameScreen implements Screen {
         game.renderBackground(delta);
         game.arena.world.step(1/60f, 6, 2);
 
+        if (game.arena.isGroundHit) game.arena.updateTerrain();
+        if (game.arena.weaponToDestroy != null) {
+            game.arena.world.destroyBody(game.arena.weaponToDestroy);
+            game.arena.setWeaponToDestroy(null);
+        }
+        if (game.arena.isGameOver) game.setScreen(new MainMenuScreen(game));
+
         game.arena.debugRenderer.render(game.arena.world, game.camera.combined);
         game.batch.setProjectionMatrix(game.camera.combined);
         game.batch.begin();
-        game.batch.draw(terrainImg, 0, 0);
+        game.batch.draw(game.arena.getTerrain().getTexture(), 0, 0);
         game.batch.end();
 
         stage.act();

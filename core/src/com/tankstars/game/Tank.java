@@ -30,7 +30,7 @@ public abstract class Tank {
 
         this.player = player;
 
-        this.positionX = this.player.isMain ? 20 : TankStarsGame.VIEWPORT_WIDTH - 20;
+        this.positionX = this.player.isMain ? 200 : TankStarsGame.VIEWPORT_WIDTH - 200;
         this.positionY = TankStarsGame.VIEWPORT_HEIGHT / 2;
 
         this.createTankBody();
@@ -49,7 +49,11 @@ public abstract class Tank {
         fixtureDef.density = 0.5f;
         fixtureDef.friction = 0.4f;
 
-        tankBody.createFixture(fixtureDef);
+        if (player.isMain) {
+            tankBody.createFixture(fixtureDef).setUserData("tankA");
+        } else {
+            tankBody.createFixture(fixtureDef).setUserData("tankB");
+        }
         circle.dispose();
     }
 
@@ -59,6 +63,10 @@ public abstract class Tank {
         Integer positionY = (int) tankPosition.y + 20;
         Weapon weapon = new Weapon(positionX, positionY, world);
         weapon.fire(power, angle);
+    }
+
+    public void handleHit() {
+       this.health -= 100;
     }
 
     public Integer getFuel() {

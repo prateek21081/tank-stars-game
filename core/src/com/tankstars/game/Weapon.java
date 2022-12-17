@@ -31,7 +31,7 @@ public class Weapon {
         fixtureDef.shape = circleShape;
         fixtureDef.density = 1f;
 
-        weaponBody.createFixture(fixtureDef);
+        weaponBody.createFixture(fixtureDef).setUserData("weapon");
         circleShape.dispose();
     }
 
@@ -45,8 +45,5 @@ public class Weapon {
         float y = power * (float) Math.sin((double) angle);
         Vector2 impulse = new Vector2(x, y);
         weaponBody.applyLinearImpulse(impulse, weaponBody.getWorldCenter(), true);
-    }
-
-    public static class WorldContactListener {
     }
 }

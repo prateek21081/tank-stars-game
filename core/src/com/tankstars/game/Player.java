@@ -44,4 +44,15 @@ public class Player {
     public void fire(float power, float angle) {
         this.tank.fire(power, angle);
     }
+
+    public void handleHit() {
+        tank.handleHit();
+    }
+
+    public boolean checkDead() {
+        if (tank.getHealth() <= 0) {
+            return true;
+        }
+        return false;
+    }
 }

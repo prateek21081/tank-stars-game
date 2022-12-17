@@ -17,6 +17,7 @@ public class Terrain {
         WIDTH = width;
         HEIGHT = height;
         initYCoordinates();
+        generateTexture();
     }
 
     public List<Integer> getyCoordinates() {
@@ -46,9 +47,10 @@ public class Terrain {
         for (int x = x1; x < x2; x++) {
             int y = getDeformedYCoordinate(x, h, k, r);
 //             y = convertY(y);
-            y = Math.max(yCoordinates.get(x), y);
+            y = Math.min(yCoordinates.get(x), y);
             yCoordinates.set(x, y);
         }
+        generateTexture();
     }
 
     private void generatePixmap() {
@@ -67,10 +69,13 @@ public class Terrain {
         }
     }
 
-    public Texture getTexture() {
+    private void generateTexture() {
         generatePixmap();
         texture = new Texture(pixmap);
         pixmap.dispose();
+    }
+
+    public Texture getTexture() {
         return texture;
     }
 }
