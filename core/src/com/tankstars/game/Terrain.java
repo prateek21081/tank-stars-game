@@ -26,7 +26,7 @@ public class Terrain {
     private void initYCoordinates() {
         yCoordinates = new ArrayList<Integer>();
         for (int i = 0; i < WIDTH; i++) {
-            yCoordinates.add(280);
+            yCoordinates.add(200);
         }
     }
 
@@ -45,7 +45,7 @@ public class Terrain {
 
         for (int x = x1; x < x2; x++) {
             int y = getDeformedYCoordinate(x, h, k, r);
-            y = convertY(y);
+//             y = convertY(y);
             y = Math.max(yCoordinates.get(x), y);
             yCoordinates.set(x, y);
         }
@@ -56,7 +56,7 @@ public class Terrain {
 
         for (int x = 0; x < WIDTH; x++) {
             for (int y = 0; y < HEIGHT; y++) {
-                if (y >= yCoordinates.get(x)) {
+                if (y >= convertY(yCoordinates.get(x))) {
                     int green = Color.rgba8888(0.165f, 0.0313f, 0.1568f, 1);
                     pixmap.drawPixel(x, y, green);
                 } else {

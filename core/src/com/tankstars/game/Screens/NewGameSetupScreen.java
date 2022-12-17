@@ -127,8 +127,9 @@ public class NewGameSetupScreen implements Screen {
         buttonNext.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
-                game.setPlayerA(new Player(player1Name.getText(), tankListA.getSelected()));
-                game.setPlayerB(new Player(player2Name.getText(), tankListB.getSelected()));
+                Player playerA = new Player(player1Name.getText(), tankListA.getSelected(), true);
+                Player playerB = new Player(player2Name.getText(), tankListB.getSelected(), false);
+                game.createArena(playerA, playerB);
                 game.setScreen(new GameScreen(game));
                 dispose();
             }

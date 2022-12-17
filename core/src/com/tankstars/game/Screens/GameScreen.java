@@ -25,15 +25,10 @@ public class GameScreen implements Screen {
     private final TextButton fireButton;
     private final Slider powerSlider;
     private final Label powerLabel;
-    private final Arena arena;
-    private final Terrain terrain;
     private Texture terrainImg;
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
-
-        arena = new Arena();
-        terrain = new Terrain(game.VIEWPORT_WIDTH, game.VIEWPORT_HEIGHT);
 
         stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
@@ -105,7 +100,7 @@ public class GameScreen implements Screen {
         root.add(btmHUD).grow();
 
         // create a new terrain image
-        terrainImg = terrain.getTexture();
+        terrainImg = game.arena.getTerrain().getTexture();
     }
 
     @Override
@@ -116,11 +111,11 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
         game.renderBackground(delta);
+        game.arena.world.step(1/60f, 6, 2);
 
-        arena.debugRenderer.render(arena.world, game.camera.combined);
+        game.arena.debugRenderer.render(game.arena.world, game.camera.combined);
         game.batch.setProjectionMatrix(game.camera.combined);
         game.batch.begin();
-//		batch.draw(img, 200, 200);
         game.batch.draw(terrainImg, 0, 0);
         game.batch.end();
 

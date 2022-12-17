@@ -11,20 +11,17 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tankstars.game.Screens.MainMenuScreen;
 
 public class TankStarsGame extends Game {
-	public final int VIEWPORT_WIDTH = 1600;
-	public final int VIEWPORT_HEIGHT = 731;
-	private Player playerA = null;
-	private Player playerB = null;
-
+	public static final int VIEWPORT_WIDTH = 997;
+	public static final int VIEWPORT_HEIGHT = 731;
 	public Skin skin;
-
 	public OrthographicCamera camera;
 	public Viewport viewport;
-
 	public SpriteBatch batch;
 	public TextureAtlas textureAtlas;
 	public Animation<TextureRegion> animation;
 	private float elapsedTime;
+	public Arena arena;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -53,21 +50,10 @@ public class TankStarsGame extends Game {
 		batch.dispose();
 	}
 
-
-	public Player getPlayerA() {
-		return playerA;
-	}
-
-	public Player getPlayerB() {
-		return playerB;
-	}
-
-	public void setPlayerA(Player playerA) {
-		this.playerA = playerA;
-	}
-
-	public void setPlayerB(Player playerB) {
-		this.playerB = playerB;
+	public void createArena(Player playerA, Player playerB) {
+		this.arena = new Arena();
+		this.arena.setPlayerA(playerA);
+		this.arena.setPlayerB(playerB);
 	}
 
 	public void renderBackground(float delta) {

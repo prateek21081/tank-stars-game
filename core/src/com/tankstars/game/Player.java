@@ -1,23 +1,38 @@
 package com.tankstars.game;
 
-public class Player {
-    private String name;
-    private Tank tank;
+import com.badlogic.gdx.physics.box2d.World;
 
-    public Player(String playerName, String tankName) {
+public class Player {
+    public Boolean isMain;
+    private String name;
+    private String tankName;
+    private Tank tank;
+    private World world;
+
+    public Player(String playerName, String tankName, Boolean isMain) {
         this.name = playerName;
+        this.tankName = tankName;
+        this.isMain = isMain;
     }
 
-    public void createTank (String tankName) {
-        switch (tankName) {
+    public World getWorld() {
+        return world;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public void createTank () {
+        switch (this.tankName) {
             case "Helios":
-                tank = new TankHelios();
+                this.tank = new TankHelios(this, this.world);
                 break;
             case "Coalition":
-                tank = new TankCoalition();
+                this.tank = new TankCoalition(this, this.world);
                 break;
             case "MarkOne":
-                tank = new TankMarkOne();
+                this.tank = new TankMarkOne(this, this.world);
                 break;
         }
     }
