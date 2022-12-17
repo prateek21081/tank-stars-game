@@ -1,6 +1,9 @@
 package com.tankstars.game;
 
 import java.util.ArrayList;
+import java.util.Vector;
+
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 public abstract class Tank {
@@ -34,7 +37,6 @@ public abstract class Tank {
     }
 
     public void createTankBody() {
-        System.out.println("Tank body created");
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(positionX, positionY);
@@ -51,8 +53,12 @@ public abstract class Tank {
         circle.dispose();
     }
 
-    public void fire () {
-
+    public void fire (float power, float angle) {
+        Vector2 tankPosition = tankBody.getPosition();
+        Integer positionX = (int) tankPosition.x;
+        Integer positionY = (int) tankPosition.y + 20;
+        Weapon weapon = new Weapon(positionX, positionY, world);
+        weapon.fire(power, angle);
     }
 
     public Integer getFuel() {

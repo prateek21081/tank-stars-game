@@ -6,20 +6,19 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 public class Arena {
-   	private SpriteBatch batch;
-   	private Texture img;
-   	private Texture pixmaptex;
    	private Terrain terrain;
-   	private ChainShape chainShape;
    	private Body terrainBody;
     private Player playerB = null;
 	private Player playerA = null;
+    private boolean turn;
 
     public World world;
     public Box2DDebugRenderer debugRenderer;
 
     public Arena() {
-        world = new World(new Vector2(0, -10), true);
+        turn = true;
+        world = new World(new Vector2(0, -20), true);
+        world.setContactFilter(new WorldContactListener());
         debugRenderer = new Box2DDebugRenderer();
         terrain = new Terrain(TankStarsGame.VIEWPORT_WIDTH, TankStarsGame.VIEWPORT_HEIGHT);
         createTerrainBody();
@@ -30,7 +29,6 @@ public class Arena {
     }
 
     public void setPlayerA(Player playerA) {
-        System.out.println("player A set");
         this.playerA = playerA;
         this.playerA.setWorld(this.world);
         this.playerA.createTank();
@@ -45,10 +43,9 @@ public class Arena {
     }
 
     public void setPlayerB(Player playerB) {
-        System.out.println("player B set");
-        this.playerB = playerB;
-        this.playerB.setWorld(this.world);
-        this.playerB.createTank();
+        playerB = playerB;
+        playerB.setWorld(this.world);
+        playerB.createTank();
     }
 
     private void createTerrainBody() {
@@ -72,5 +69,13 @@ public class Arena {
         fixtureDef.density = 1f;
         terrainBody.createFixture(fixtureDef);
         chainShape.dispose();
+    }
+
+    public void handleFire(float power, float angle) {
+        if (turn) {
+            playerA.fire(power, angle);
+        } else {
+            playerB.fire(power, angle);
+        }
     }
 }

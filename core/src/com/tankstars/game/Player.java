@@ -41,4 +41,7 @@ public class Player {
 
     }
 
+    public void fire(float power, float angle) {
+        this.tank.fire(power, angle);
+    }
 }

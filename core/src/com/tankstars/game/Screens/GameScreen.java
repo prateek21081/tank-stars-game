@@ -26,6 +26,8 @@ public class GameScreen implements Screen {
     private final Slider powerSlider;
     private final Label powerLabel;
     private Texture terrainImg;
+    private float power;
+    private float angle;
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
@@ -64,12 +66,13 @@ public class GameScreen implements Screen {
         angleLabel = new Label("Angle : XX", game.skin);
         btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
 
-        angleSlider = new Slider(0, 359, 1, false, game.skin);
+        angleSlider = new Slider(0, 179, 1, false, game.skin);
         btmHUD.add(angleSlider).expandY().right().bottom().space(30).padBottom(30);
         angleSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Slider slider = (Slider) actor;
+                angle = slider.getValue();
                 //System.out.println(slider.getValue());
             }
         });
@@ -80,6 +83,11 @@ public class GameScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Tank fire
+                float scaledPower = (float) Math.pow(power, 2.0);
+                System.out.println("Power: " + power);
+                System.out.println("Scaled Power: " + scaledPower);
+                System.out.println("Angle: " + angle);
+                game.arena.handleFire(scaledPower, angle);
             }
         });
 
@@ -89,6 +97,7 @@ public class GameScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Slider slider = (Slider) actor;
+                power = slider.getValue();
                 //System.out.println(slider.getValue());
             }
         });
