@@ -25,7 +25,7 @@ public class TankStarsGame extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		skin = new Skin(Gdx.files.internal("skin-craftacular/craftacular-ui.json"));
+		skin = new Skin(Gdx.files.internal("skin-cloud/skin/cloud-form-ui.json"));
 
 		textureAtlas = new TextureAtlas(Gdx.files.internal("background/background.atlas"));
 		animation = new Animation(1/5f, textureAtlas.getRegions());
