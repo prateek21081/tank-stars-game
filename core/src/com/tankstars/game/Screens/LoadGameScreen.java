@@ -37,7 +37,7 @@ public class LoadGameScreen implements Screen {
         root.row();
         root.add(rowTwo).growX();
 
-        File folder = new File("savedgames/");
+        File folder = new File("../savedgames/");
         File[] listOfFiles = folder.listFiles();
 
         String[] fileNames = new String[listOfFiles.length];
