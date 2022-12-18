@@ -65,6 +65,22 @@ public abstract class Tank {
         weapon.fire(power, angle);
     }
 
+    public Integer getPositionX() {
+        return positionX;
+    }
+
+    public Integer getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionX(Integer positionX) {
+        this.positionX = positionX;
+    }
+
+    public void setPositionY(Integer positionY) {
+        this.positionY = positionY;
+    }
+
     public void handleHit() {
        this.health -= 100;
     }

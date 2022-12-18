@@ -24,6 +24,10 @@ public class Terrain {
         return yCoordinates;
     }
 
+    public void setyCoordinates(List<Integer> yCoordinates) {
+        this.yCoordinates = yCoordinates;
+    }
+
     private void initYCoordinates() {
         yCoordinates = new ArrayList<Integer>();
         for (int i = 0; i < WIDTH; i++) {

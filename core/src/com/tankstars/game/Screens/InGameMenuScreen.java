@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tankstars.game.TankStarsGame;
 
+import java.io.IOException;
+
 public class InGameMenuScreen implements Screen {
     private final TankStarsGame game;
     private final Stage stage;
@@ -40,6 +42,11 @@ public class InGameMenuScreen implements Screen {
         buttonSaveGame.addListener(new ClickListener() {
             @Override
             public void clicked (InputEvent event, float x, float y) {
+                try {
+                    game.gameState.saveGame();
+                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+                }
                 game.setScreen(new MainMenuScreen(game));
                 dispose();
             }

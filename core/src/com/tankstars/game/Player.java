@@ -23,6 +23,14 @@ public class Player {
         this.world = world;
     }
 
+    public String getTankName() {
+        return tankName;
+    }
+
+    public Tank getTank() {
+        return tank;
+    }
+
     public void createTank () {
         switch (this.tankName) {
             case "Helios":
@@ -54,5 +62,9 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

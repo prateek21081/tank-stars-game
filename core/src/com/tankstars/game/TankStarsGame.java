@@ -20,6 +20,7 @@ public class TankStarsGame extends Game {
 	public TextureAtlas textureAtlas;
 	public Animation<TextureRegion> animation;
 	private float elapsedTime;
+	public GameState gameState;
 	public Arena arena;
 
 	@Override
@@ -30,6 +31,8 @@ public class TankStarsGame extends Game {
 		textureAtlas = new TextureAtlas(Gdx.files.internal("background/background.atlas"));
 		animation = new Animation(1/5f, textureAtlas.getRegions());
 		elapsedTime = 0f;
+
+		gameState = new GameState(this);
 
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, camera);
