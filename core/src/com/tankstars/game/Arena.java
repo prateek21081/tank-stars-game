@@ -64,7 +64,6 @@ public class Arena {
         terrainBody = world.createBody(bodyDef);
 
         int length = (TankStarsGame.VIEWPORT_WIDTH / 2) + 2;
-        System.out.println(length);
         int index = 1;
         Vector2[] vertices = new Vector2[length];
         vertices[0] = new Vector2(0, 0);
@@ -93,13 +92,13 @@ public class Arena {
         }
     }
 
-    public void handleTankHit(String userData) {
+    public void handleDirectTankHit(String userData) {
         switch (userData) {
             case "tankA":
-                playerA.handleHit();
+                playerA.handleHit(30);
                 break;
             case "tankB":
-                playerB.handleHit();
+                playerB.handleHit(30);
                 break;
         }
         checkGameOver();
@@ -113,7 +112,33 @@ public class Arena {
         }
     }
 
+    private Vector2 getUnitVector(Vector2 vector) {
+        int mod = (int) Math.sqrt(Math.pow((vector.x), 2) + Math.pow(vector.y, 2));
+        Vector2 unitVector = new Vector2(vector.x / mod, vector.y / mod);
+        return unitVector;
+    }
+
+    private void handleIndirectTankHit(Player player, Vector2 position) {
+        int hitDamage = 200;
+        Tank tank = player.getTank();
+        int distance = (int) Math.sqrt(Math.pow((tank.getPositionX() - position.x), 2) + Math.pow((tank.getPositionY() - position.y), 2));
+        System.out.println("Distance from " + player.getName() + ": " + distance);
+        hitDamage -= distance;
+        hitDamage /= 4;
+        if (hitDamage < 0) hitDamage = 0;
+        System.out.println("Hit damage: " + hitDamage);
+        tank.handleHit(hitDamage);
+        Vector2 impulse = new Vector2(tank.getPositionX() - position.x, tank.getPositionY() - position.y);
+        impulse = getUnitVector(impulse);
+        System.out.println("Unit impulse" + impulse);
+        impulse.set(impulse.x * (int) Math.pow(hitDamage * 10, 2), impulse.y * (int) Math.pow(hitDamage * 10, 2));
+        System.out.println("Hit impulse" + impulse);
+        tank.applyImpulse(impulse);
+    }
+
     public void handleGroundHit(Vector2 position) {
+        handleIndirectTankHit(playerA, position);
+        handleIndirectTankHit(playerB, position);
         terrain.deformAt((int) position.x, (int) position.y, 20);
         isGroundHit = true;
     }

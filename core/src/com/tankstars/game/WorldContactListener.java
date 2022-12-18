@@ -3,8 +3,6 @@ package com.tankstars.game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
-import java.util.Vector;
-
 public class WorldContactListener implements ContactListener {
     private Arena arena;
 
@@ -23,7 +21,7 @@ public class WorldContactListener implements ContactListener {
 
             if (other.getUserData().equals("tankA") || other.getUserData().equals("tankB")) {
                 arena.setWeaponToDestroy(weapon.getBody());
-                arena.handleTankHit((String) other.getUserData());
+                arena.handleDirectTankHit((String) other.getUserData());
             } else {
                 Vector2 center = weapon.getBody().getWorldCenter();
                 Vector2 position = new Vector2(center.x, center.y - weapon.getShape().getRadius());
@@ -36,17 +34,11 @@ public class WorldContactListener implements ContactListener {
     }
 
     @Override
-    public void endContact(Contact contact) {
-
-    }
+    public void endContact(Contact contact) {}
 
     @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
-
-    }
+    public void preSolve(Contact contact, Manifold oldManifold) {}
 
     @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
-
-    }
+    public void postSolve(Contact contact, ContactImpulse impulse) {}
 }

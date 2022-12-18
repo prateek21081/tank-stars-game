@@ -53,8 +53,8 @@ public class Player {
         this.tank.fire(power, angle);
     }
 
-    public void handleHit() {
-        tank.handleHit();
+    public void handleHit(int damage) {
+        tank.handleHit(damage);
     }
 
     public boolean checkDead() {
