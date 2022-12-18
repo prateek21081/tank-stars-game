@@ -32,7 +32,7 @@ public class TankStarsGame extends Game {
 		animation = new Animation(1/5f, textureAtlas.getRegions());
 		elapsedTime = 0f;
 
-		gameState = new GameState(this);
+		gameState = new GameState();
 
 		camera =  new OrthographicCamera();
 		viewport = new FitViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT, camera);

@@ -43,7 +43,7 @@ public class InGameMenuScreen implements Screen {
             @Override
             public void clicked (InputEvent event, float x, float y) {
                 try {
-                    game.gameState.saveGame();
+                    game.gameState.saveGame(game);
                 } catch (IOException e) {
 //                    throw new RuntimeException(e);
                 }

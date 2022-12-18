@@ -5,15 +5,24 @@ import java.util.List;
 
 public class GameState implements Serializable {
 
+    private String gameID;
+    private List<Integer> terrain;
     private PlayerState playerStateA;
-   private PlayerState playerStateB;
+    private PlayerState playerStateB;
 
-   private String gameID;
-   private TankStarsGame game;
-   private List<Integer> terrain;
+    public List<Integer> getTerrain() {
+        return terrain;
+    }
 
-   public GameState(TankStarsGame game) {
-      this.game = game;
+    public PlayerState getPlayerStateA() {
+        return playerStateA;
+    }
+
+    public PlayerState getPlayerStateB() {
+        return playerStateB;
+    }
+
+   public GameState() {
 
       this.playerStateA = new PlayerState();
       this.playerStateB = new PlayerState();
@@ -21,11 +30,12 @@ public class GameState implements Serializable {
    
    public void getState(PlayerState state, Player player) {
       state.name = player.getName();
+      state.tankName = player.getTankName();
+
       Tank tank = player.getTank();
       state.health = tank.getHealth();
       state.positionX = tank.getPositionX();
       state.positionY = tank.getPositionY();
-      state.tankName = player.getTankName();
    }
 
    public void setState(PlayerState playerState, Player player) {
@@ -35,35 +45,33 @@ public class GameState implements Serializable {
       tank.setPositionY(playerState.positionY);
    }
 
-   public void saveGame() throws IOException {
-        Player playerA = this.game.arena.getPlayerA();
-        Player playerB = this.game.arena.getPlayerB();
-        getState(playerStateA, playerA);
-        getState(playerStateB, playerB);
+   public void saveGame(TankStarsGame game) throws IOException {
+        Player playerA = game.arena.getPlayerA();
+        Player playerB = game.arena.getPlayerB();
+        getState(this.playerStateA, playerA);
+        getState(this.playerStateB, playerB);
 
         this.gameID = "testSaveGame.xyz";
         this.terrain = game.arena.getTerrain().getyCoordinates();
 
-        FileOutputStream fileOutputStream = new FileOutputStream("savedgames/" + this.gameID);
+        FileOutputStream fileOutputStream = new FileOutputStream("../savedgames/" + this.gameID);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(this);
+        objectOutputStream.close();
+        fileOutputStream.close();
    }
 
    public void loadGame(String gameID) throws IOException, ClassNotFoundException {
-      FileInputStream fileInputStream = new FileInputStream("savedgames/" + gameID);
+      FileInputStream fileInputStream = new FileInputStream("../savedgames/" + gameID);
       ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
       GameState gameState = (GameState) objectInputStream.readObject();
+      objectInputStream.close();
+      fileInputStream.close();
 
-      Player playerA = new Player(this.playerStateA.name, this.playerStateA.tankName, true);
-      Player playerB = new Player(this.playerStateB.name, this.playerStateB.tankName, false);
-
-      game.arena = new Arena();
-      game.arena.setPlayerA(playerA);
-      game.arena.setPlayerA(playerB);
-      game.arena.getTerrain().setyCoordinates(this.terrain);
-
-      setState(this.playerStateA, playerA);
-      setState(this.playerStateB, playerB);
+      this.gameID = gameState.gameID;
+      this.terrain = gameState.terrain;
+      this.playerStateA = gameState.playerStateA;
+      this.playerStateB = gameState.playerStateB;
    }
 
 }
