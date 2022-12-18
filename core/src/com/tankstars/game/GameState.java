@@ -1,20 +1,11 @@
 package com.tankstars.game;
 
-import com.badlogic.gdx.Game;
-
 import java.io.*;
 import java.util.List;
 
 public class GameState implements Serializable {
 
-   class PlayerState implements Serializable {
-      public String name;
-      public Integer health;
-      public Integer positionX;
-      public Integer positionY;
-      public String tankName;
-   }
-   private PlayerState playerStateA;
+    private PlayerState playerStateA;
    private PlayerState playerStateB;
 
    private String gameID;
