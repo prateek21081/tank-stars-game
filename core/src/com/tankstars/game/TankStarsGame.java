@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tankstars.game.Screens.MainMenuScreen;
 
 public class TankStarsGame extends Game {
-	public static final int VIEWPORT_WIDTH = 997;
+	public static final int VIEWPORT_WIDTH = 1600;
 	public static final int VIEWPORT_HEIGHT = 731;
 	public Skin skin;
 	public OrthographicCamera camera;

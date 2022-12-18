@@ -63,11 +63,14 @@ public class Arena {
         bodyDef.position.set(0, 0);
         terrainBody = world.createBody(bodyDef);
 
-        Vector2[] vertices = new Vector2[TankStarsGame.VIEWPORT_WIDTH + 2];
+        int length = (TankStarsGame.VIEWPORT_WIDTH / 2) + 2;
+        System.out.println(length);
+        int index = 1;
+        Vector2[] vertices = new Vector2[length];
         vertices[0] = new Vector2(0, 0);
-        vertices[TankStarsGame.VIEWPORT_WIDTH + 1] = new Vector2(TankStarsGame.VIEWPORT_WIDTH - 1, 0);
-        for (int i = 1; i <= TankStarsGame.VIEWPORT_WIDTH; i++) {
-            vertices[i] = new Vector2(i - 1, terrain.getyCoordinates().get(i - 1));
+        vertices[length - 1] = new Vector2(TankStarsGame.VIEWPORT_WIDTH - 1, 0);
+        for (int i = 1; i <= TankStarsGame.VIEWPORT_WIDTH; i += 2) {
+            vertices[index++] = new Vector2(i - 1, terrain.getyCoordinates().get(i - 1));
         }
 
         ChainShape chainShape = new ChainShape();
