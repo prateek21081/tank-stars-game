@@ -28,8 +28,14 @@ public class LoadGameScreen implements Screen {
 
         root = new Table();
         root.setFillParent(true);
-        root.setDebug(true, true);
+//        root.setDebug(true, true);
         stage.addActor(root);
+
+        Table rowOne = new Table();
+        Table rowTwo = new Table();
+        root.add(rowOne).grow();
+        root.row();
+        root.add(rowTwo).growX();
 
         File folder = new File("savedgames/");
         File[] listOfFiles = folder.listFiles();
@@ -41,8 +47,8 @@ public class LoadGameScreen implements Screen {
 
         savedGames = new List<String>(game.skin);
         savedGames.setItems(fileNames);
-        root.add(savedGames);
-        root.row();
+        rowOne.add(savedGames).padTop(100f).padBottom(100f).padRight(400f).padLeft(400f).grow();
+        rowOne.row();
 
         buttonNext = new TextButton("Play", game.skin);
         buttonNext.addListener(new ClickListener() {
@@ -70,9 +76,8 @@ public class LoadGameScreen implements Screen {
             }
         });
 
-        root.defaults().expand().pad(30f);
-        root.add(buttonBack).left();
-        root.add(buttonNext).right();
+        rowTwo.add(buttonBack).expandX().left().pad(30f);
+        rowTwo.add(buttonNext).expandX().right().pad(30f);
     }
 
     @Override

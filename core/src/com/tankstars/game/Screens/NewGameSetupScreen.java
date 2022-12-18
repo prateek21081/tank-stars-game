@@ -48,10 +48,10 @@ public class NewGameSetupScreen implements Screen {
         Table rowThree = new Table();
         Table rowFour = new Table();
 
-        rowOne.setDebug(true, true);
-        rowTwo.setDebug(true, true);
-        rowThree.setDebug(true, true);
-        rowFour.setDebug(true, true);
+//        rowOne.setDebug(true, true);
+//        rowTwo.setDebug(true, true);
+//        rowThree.setDebug(true, true);
+//        rowFour.setDebug(true, true);
 
         root.add(rowOne).grow().row();
         root.add(rowTwo).grow().row();

@@ -121,6 +121,28 @@ com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
 		name: button-over
 		color: purple
 	}
+	scrollbar-horizontal-knob-cyan: {
+		name: scrollbar-horizontal-knob
+		color: cyan
+	}
+	button-red: {
+		name: button
+		color: {
+			r: 0.8784314
+			g: 0.08235294
+			b: 0.08235294
+			a: 1
+		}
+	}
+	progress-bar-horizontal-knob-red: {
+		name: progress-bar-horizontal-knob
+		color: {
+			r: 1
+			g: 0
+			b: 0
+			a: 1
+		}
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 	default: {
@@ -186,8 +208,8 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
-		font: font
-		fontColor: black
+		font: title
+		fontColor: white
 	}
 	title: {
 		font: title
@@ -200,17 +222,17 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
-		font: font
+		font: title
 		fontColorSelected: black
 		fontColorUnselected: black
-		selection: button-menu-over
-		background: list
+		selection: button-pressed
+		background: button-purple
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 	default-horizontal: {
-		background: progress-bar-horizontal
-		knobBefore: progress-bar-horizontal-knob
+		background: button
+		knobBefore: progress-bar-horizontal-knob-red
 	}
 	default-vertical: {
 		background: progress-bar-vertical
@@ -238,10 +260,11 @@ com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default-horizontal: {
-		knobOver: slider-knob-over
-		knobDown: slider-knob-pressed
-		background: slider
-		knob: slider-knob
+		knobOver: button-menu-pressed
+		knobDown: button-menu-pressed
+		background: button
+		knob: button-menu-pressed
+		knobBefore: scrollbar-horizontal-knob-cyan
 	}
 	default-vertical: {
 		knobOver: slider-knob-over
@@ -260,7 +283,7 @@ com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
-		font: font
+		font: title
 		fontColor: white
 		up: button-purple
 		down: button-pressed-over-purple
@@ -278,7 +301,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
-		font: font
+		font: title
 		fontColor: black
 		background: textfield
 		focusedBackground: textfield-selected
