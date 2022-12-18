@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.tankstars.game.Arena;
+import com.tankstars.game.Player;
 import com.tankstars.game.TankStarsGame;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +39,7 @@ public class LoadGameScreen implements Screen {
         root.row();
         root.add(rowTwo).growX();
 
-        File folder = new File("savedgames/");
+        File folder = new File("../savedgames/");
         File[] listOfFiles = folder.listFiles();
 
         String[] fileNames = new String[listOfFiles.length];
@@ -62,6 +64,12 @@ public class LoadGameScreen implements Screen {
                 } catch (ClassNotFoundException e) {
 //                    throw new RuntimeException(e);
                 }
+                Player playerA = new Player(game.gameState.getPlayerStateA().name, game.gameState.getPlayerStateA().tankName, true);
+                Player playerB = new Player(game.gameState.getPlayerStateB().name, game.gameState.getPlayerStateB().tankName, false);
+                game.createArena(playerA, playerB);
+                game.arena.getTerrain().setyCoordinates(game.gameState.getTerrain());
+                game.gameState.setState(game.gameState.getPlayerStateA(), playerA);
+                game.gameState.setState(game.gameState.getPlayerStateB(), playerB);
                 game.setScreen(new GameScreen(game));
                 dispose();
             }
