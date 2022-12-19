@@ -1,5 +1,6 @@
 package com.tankstars.game;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Player {
@@ -66,5 +67,9 @@ public class Player {
 
     public String getName() {
         return this.name;
+    }
+
+    public void update(SpriteBatch batch) {
+        tank.updateImage(batch);
     }
 }

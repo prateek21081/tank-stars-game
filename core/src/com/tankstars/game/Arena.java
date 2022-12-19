@@ -1,5 +1,6 @@
 package com.tankstars.game;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -136,6 +137,7 @@ public class Arena {
         impulse.set(impulse.x * (int) Math.pow(hitDamage, 2) * 10, impulse.y * (int) Math.pow(hitDamage, 2) * 10);
         System.out.println("Hit impulse" + impulse);
         tank.applyImpulse(impulse);
+        checkGameOver();
     }
 
     public void handleGroundHit(Vector2 position) {
@@ -149,5 +151,10 @@ public class Arena {
         world.destroyBody(terrainBody);
         createTerrainBody();
         isGroundHit = false;
+    }
+
+    public void update(SpriteBatch batch) {
+        playerA.update(batch);
+        playerB.update(batch);
     }
 }

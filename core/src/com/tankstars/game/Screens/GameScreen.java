@@ -57,7 +57,7 @@ public class GameScreen implements Screen {
 
         healthPlayerB = new ProgressBar(0, 100, 1, false, game.skin);
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
-        healthPlayerB.setValue(90);
+        healthPlayerB.setValue(100);
 
         angleLabel = new Label("Angle : XXX", game.skin);
         btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
@@ -115,6 +115,8 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         game.renderBackground(delta);
         game.arena.world.step(1/60f, 6, 2);
+        healthPlayerA.setValue(game.arena.getPlayerA().getTank().getHealth());
+        healthPlayerB.setValue(game.arena.getPlayerB().getTank().getHealth());
 
         if (game.arena.isGroundHit) game.arena.updateTerrain();
         if (game.arena.weaponToDestroy != null) {
@@ -127,6 +129,7 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(game.camera.combined);
         game.batch.begin();
         game.batch.draw(game.arena.getTerrain().getTexture(), 0, 0);
+        game.arena.update(game.batch);
         game.batch.end();
 
         stage.act();

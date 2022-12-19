@@ -5,6 +5,8 @@ import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -20,7 +22,9 @@ public abstract class Tank {
     private Body tankBody;
     private World world;
     private Player player;
-    
+    protected Sprite tankSprite;
+    private boolean isReset;
+
     public Tank (Player player, World world) {
         this.world = world;
 
@@ -35,10 +39,10 @@ public abstract class Tank {
         this.positionX = this.player.isMain ? 600 : TankStarsGame.VIEWPORT_WIDTH - 600;
         this.positionY = TankStarsGame.VIEWPORT_HEIGHT / 2;
 
-        this.createTankBody();
+        this.createTankBody(this.positionX, this.positionY);
     }
 
-    public void createTankBody() {
+    public void createTankBody(int positionX, int positionY) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(positionX, positionY);
@@ -131,5 +135,29 @@ public abstract class Tank {
 
     public void applyImpulse(Vector2 impulse) {
         tankBody.applyLinearImpulse(impulse, tankBody.getWorldCenter(), true);
+    }
+
+    public void updateImage(SpriteBatch batch) {
+        boolean isMoving = (Math.abs(tankBody.getLinearVelocity().x) >= 0.25f || Math.abs(tankBody.getLinearVelocity().y) >= 0.25f);
+        if (isMoving) {
+            Vector2 center = tankBody.getWorldCenter();
+            tankSprite.setPosition(center.x - 5, center.y - 5);
+            float box2dAngle = (float) Math.toDegrees(tankBody.getAngle());
+            float spriteAngle = tankSprite.getRotation();
+            if (Math.abs(box2dAngle - spriteAngle) > 0.1f) ;
+            tankSprite.rotate(box2dAngle - spriteAngle);
+            tankSprite.draw(batch);
+            this.isReset = false;
+        } else if (!isReset){
+            world.destroyBody(tankBody);
+            System.out.println("reset");
+            createTankBody(getPositionX() - 5, getPositionY() - 5);
+            tankSprite.setPosition(tankBody.getWorldCenter().x - 5, tankBody.getWorldCenter().y - 5);
+            tankSprite.rotate(-1 * tankSprite.getRotation());
+            tankSprite.draw(batch);
+            this.isReset = true;
+        } else {
+            tankSprite.draw(batch);
+        }
     }
 }
