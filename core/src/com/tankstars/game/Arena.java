@@ -121,6 +121,8 @@ public class Arena {
     private void handleIndirectTankHit(Player player, Vector2 position) {
         int hitDamage = 200;
         Tank tank = player.getTank();
+        System.out.println("Tank coordinates " + tank.getPositionX() + ", " + tank.getPositionY());
+        System.out.println("Weapon coordinates " + position.x + ", " + position.y);
         int distance = (int) Math.sqrt(Math.pow((tank.getPositionX() - position.x), 2) + Math.pow((tank.getPositionY() - position.y), 2));
         System.out.println("Distance from " + player.getName() + ": " + distance);
         hitDamage -= distance;
@@ -131,7 +133,7 @@ public class Arena {
         Vector2 impulse = new Vector2(tank.getPositionX() - position.x, tank.getPositionY() - position.y);
         impulse = getUnitVector(impulse);
         System.out.println("Unit impulse" + impulse);
-        impulse.set(impulse.x * (int) Math.pow(hitDamage * 10, 2), impulse.y * (int) Math.pow(hitDamage * 10, 2));
+        impulse.set(impulse.x * (int) Math.pow(hitDamage, 2) * 10, impulse.y * (int) Math.pow(hitDamage, 2) * 10);
         System.out.println("Hit impulse" + impulse);
         tank.applyImpulse(impulse);
     }

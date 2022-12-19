@@ -59,7 +59,7 @@ public class GameScreen implements Screen {
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
         healthPlayerB.setValue(90);
 
-        angleLabel = new Label("Angle : XX", game.skin);
+        angleLabel = new Label("Angle : XXX", game.skin);
         btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
 
         angleSlider = new Slider(0, 179, 1, false, game.skin);
@@ -69,7 +69,7 @@ public class GameScreen implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 Slider slider = (Slider) actor;
                 angle = slider.getValue();
-                angleLabel.setText("Angle : " + angleSlider.getValue());
+                angleLabel.setText(String.format("Angle : %3d", (int) angle));
             }
         });
 
@@ -87,14 +87,14 @@ public class GameScreen implements Screen {
             }
         });
 
-        powerLabel = new Label("Power : XX", game.skin);
+        powerLabel = new Label("Power : XXX", game.skin);
         powerSlider = new Slider(0, 100, 1, false, game.skin);
         powerSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Slider slider = (Slider) actor;
                 power = slider.getValue();
-                powerLabel.setText("Power : " + powerSlider.getValue());
+                powerLabel.setText(String.format("Power : %3d", (int) power));
             }
         });
 

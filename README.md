@@ -11,3 +11,14 @@ CSE201 Advanced Programming Course Project: Game Development in Java with libGDX
 7. Next turn.
 
 8. Exit, Restart, Save
+
+## TODO
+
+1. Unit Testing
+2. Design Patterns:
+    * Singleton : GameState Class
+    * Factory: TankFactory
+3. Tank images
+4. Movement Functionality
+5. Update health bar
+6. Missile hit animation

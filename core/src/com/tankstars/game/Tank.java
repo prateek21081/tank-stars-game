@@ -1,5 +1,7 @@
 package com.tankstars.game;
 
+import java.awt.*;
+import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -44,16 +46,27 @@ public abstract class Tank {
 
         CircleShape circle = new CircleShape();
         circle.setRadius(10);
+
+        PolygonShape polygonShape = new PolygonShape();
+        Vector2[] tankVertices = new Vector2[4];
+        tankVertices[0] = new Vector2(0, 0);
+        tankVertices[1] = new Vector2(10, 0);
+        tankVertices[2] = new Vector2(10, 10);
+        tankVertices[3] = new Vector2(0, 10);
+
+        polygonShape.set(tankVertices);
+
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = circle;
-        fixtureDef.density = 1f;
-        fixtureDef.friction = 5f;
+        fixtureDef.shape = polygonShape;
+        fixtureDef.density = 5f;
+        fixtureDef.friction = 150f;
 
         if (player.isMain) {
             tankBody.createFixture(fixtureDef).setUserData("tankA");
         } else {
             tankBody.createFixture(fixtureDef).setUserData("tankB");
         }
+        polygonShape.dispose();
         circle.dispose();
     }
 
@@ -66,10 +79,12 @@ public abstract class Tank {
     }
 
     public Integer getPositionX() {
+        positionX = (int) tankBody.getWorldCenter().x;
         return positionX;
     }
 
     public Integer getPositionY() {
+        positionY = (int) tankBody.getWorldCenter().y;
         return positionY;
     }
 
