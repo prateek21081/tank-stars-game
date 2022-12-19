@@ -73,7 +73,7 @@ public class Terrain {
         }
     }
 
-    private void generateTexture() {
+    public void generateTexture() {
         generatePixmap();
         texture = new Texture(pixmap);
         pixmap.dispose();

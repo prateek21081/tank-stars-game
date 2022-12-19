@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
-import com.tankstars.game.Arena;
 import com.tankstars.game.Player;
 import com.tankstars.game.TankStarsGame;
 import java.io.File;
@@ -39,7 +38,7 @@ public class LoadGameScreen implements Screen {
         root.row();
         root.add(rowTwo).growX();
 
-        File folder = new File("../savedgames/");
+        File folder = new File("savedgames/");
         File[] listOfFiles = folder.listFiles();
 
         String[] fileNames = new String[listOfFiles.length];
@@ -70,6 +69,8 @@ public class LoadGameScreen implements Screen {
                 game.arena.getTerrain().setyCoordinates(game.gameState.getTerrain());
                 game.gameState.setState(game.gameState.getPlayerStateA(), playerA);
                 game.gameState.setState(game.gameState.getPlayerStateB(), playerB);
+                game.arena.getTerrain().generateTexture();
+                game.arena.updateTerrain();
                 game.setScreen(new GameScreen(game));
                 dispose();
             }

@@ -54,7 +54,7 @@ public class GameState implements Serializable {
         this.gameID = "testSaveGame.xyz";
         this.terrain = game.arena.getTerrain().getyCoordinates();
 
-        FileOutputStream fileOutputStream = new FileOutputStream("../savedgames/" + this.gameID);
+        FileOutputStream fileOutputStream = new FileOutputStream("savedgames/" + this.gameID);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(this);
         objectOutputStream.close();
@@ -62,7 +62,7 @@ public class GameState implements Serializable {
    }
 
    public void loadGame(String gameID) throws IOException, ClassNotFoundException {
-      FileInputStream fileInputStream = new FileInputStream("../savedgames/" + gameID);
+      FileInputStream fileInputStream = new FileInputStream("savedgames/" + gameID);
       ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
       GameState gameState = (GameState) objectInputStream.readObject();
       objectInputStream.close();
