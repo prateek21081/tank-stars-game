@@ -9,9 +9,9 @@ public class TankCoalition extends Tank {
     public TankCoalition (Player player, World world) {
         super(player, world);
         if (player.isMain) {
-            tankSprite = new Sprite(new Texture(Gdx.files.internal("assets/tank/coalition.png")));
+            tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/coalition.png")));
         } else {
-            tankSprite = new Sprite(new Texture(Gdx.files.internal("assets/tank/coalition-mirrored.png")));
+            tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/coalition-mirrored.png")));
         }
     }
 }

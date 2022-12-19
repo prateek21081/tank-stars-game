@@ -2,12 +2,18 @@ package com.tankstars.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.tankstars.game.TankStarsGame;
 
 public class GameScreen implements Screen {
@@ -24,9 +30,30 @@ public class GameScreen implements Screen {
     private final Label powerLabel;
     private float power;
     private float angle;
+    private int explosionX;
+    private int explosionY;
+    private Sprite weaponSprite;
+    private TextureAtlas textureAtlas;
+    private Animation<TextureRegion> animation;
+    private float elapsedTime;
+    private boolean explosion;
+    private float animationDuration;
+
 
     public GameScreen (final TankStarsGame game) {
         this.game = game;
+
+        elapsedTime = 0f;
+        animationDuration = 1.5f;
+        textureAtlas = new TextureAtlas("explosion/explosion.atlas");
+        weaponSprite = new Sprite(textureAtlas.findRegion("Explosion"));
+        Array<TextureRegion> keyFrames = new Array<>();
+        for (int i = 0; i < 12; i++) {
+            keyFrames.add(new TextureRegion(weaponSprite.getTexture(), i * 96, 0, 96, 96));
+        }
+        System.out.println("Keyframes" + keyFrames);
+        animation = new Animation(animationDuration / 12f, keyFrames);
+        explosion = false;
 
         stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
@@ -120,8 +147,11 @@ public class GameScreen implements Screen {
 
         if (game.arena.isGroundHit) game.arena.updateTerrain();
         if (game.arena.weaponToDestroy != null) {
+            explosionX = (int) game.arena.weaponToDestroy.getWorldCenter().x - 48;
+            explosionY = (int) game.arena.weaponToDestroy.getWorldCenter().y - 48;
             game.arena.world.destroyBody(game.arena.weaponToDestroy);
             game.arena.setWeaponToDestroy(null);
+            explosion = true;
         }
         if (game.arena.isGameOver) game.setScreen(new MainMenuScreen(game));
 
@@ -129,6 +159,13 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(game.camera.combined);
         game.batch.begin();
         game.batch.draw(game.arena.getTerrain().getTexture(), 0, 0);
+        if (explosion) {
+            animateExplosion(delta);
+            if (Math.abs(elapsedTime - animationDuration) <= 0.1f) {
+                elapsedTime = 0;
+                explosion = false;
+            }
+        }
         game.arena.update(game.batch);
         game.batch.end();
 
@@ -159,5 +196,11 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    public void animateExplosion(float delta) {
+        elapsedTime += delta;
+        System.out.println("Inside animation");
+        game.batch.draw(animation.getKeyFrame(elapsedTime, false), explosionX,  explosionY);
     }
 }

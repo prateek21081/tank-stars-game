@@ -9,9 +9,9 @@ public class TankHelios extends Tank {
     public TankHelios (Player player, World world) {
         super(player, world);
         if (player.isMain) {
-            tankSprite = new Sprite(new Texture(Gdx.files.internal("assets/tank/helios.png")));
+            tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/helios.png")));
         } else {
-            tankSprite = new Sprite(new Texture(Gdx.files.internal("assets/tank/helios-mirrored.png")));
+            tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/helios-mirrored.png")));
         }
 
     }
