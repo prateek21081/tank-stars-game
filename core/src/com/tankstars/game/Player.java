@@ -33,17 +33,7 @@ public class Player {
     }
 
     public void createTank () {
-        switch (this.tankName) {
-            case "Helios":
-                this.tank = new TankHelios(this, this.world);
-                break;
-            case "Coalition":
-                this.tank = new TankCoalition(this, this.world);
-                break;
-            case "MarkOne":
-                this.tank = new TankMarkOne(this, this.world);
-                break;
-        }
+        this.tank = TankFactory.getTank(this, this.tankName);
     }
 
     public void play () {

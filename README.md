@@ -17,7 +17,7 @@ CSE201 Advanced Programming Course Project: Game Development in Java with libGDX
 1. Unit Testing (WIP)
 2. Design Patterns:
     * Singleton : GameState Class (DONE)
-    * Factory: TankFactory
+    * Factory: TankFactory (DONE)
 3. Tank images (WIP)
 4. Movement Functionality
 5. Update health bar (DONE)
