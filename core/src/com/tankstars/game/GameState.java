@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.List;
 
 public class GameState implements Serializable {
-
+    private transient static GameState gameState;
     private String gameID;
     private List<Integer> terrain;
     private PlayerState playerStateA;
@@ -22,10 +22,17 @@ public class GameState implements Serializable {
         return playerStateB;
     }
 
-   public GameState() {
+   private GameState() {
 
       this.playerStateA = new PlayerState();
       this.playerStateB = new PlayerState();
+   }
+
+   public static GameState getInstance() {
+        if (gameState == null) {
+            gameState = new GameState();
+        }
+        return gameState;
    }
    
    public void getState(PlayerState state, Player player) {
