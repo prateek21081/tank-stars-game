@@ -151,6 +151,8 @@ public class GameScreen implements Screen {
             explosionY = (int) game.arena.weaponToDestroy.getWorldCenter().y - 48;
             game.arena.world.destroyBody(game.arena.weaponToDestroy);
             game.arena.setWeaponToDestroy(null);
+            game.arena.getPlayerA().getTank().setCurrentWeapon(null);
+            game.arena.getPlayerB().getTank().setCurrentWeapon(null);
             explosion = true;
         }
         if (game.arena.isGameOver) game.setScreen(new MainMenuScreen(game));

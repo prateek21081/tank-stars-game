@@ -1,5 +1,8 @@
 package com.tankstars.game;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -8,7 +11,10 @@ public class Weapon {
     private Double radius;
     private Integer mass;
     private Body weaponBody;
+    private Sprite weaponSprite;
     public Weapon(Integer positionX, Integer positionY, World world) {
+        weaponSprite = new Sprite(new Texture("bomb.png"));
+        weaponSprite.setSize(32, 32);
         createWeaponBody(positionX, positionY, world);
     }
 
@@ -41,9 +47,16 @@ public class Weapon {
 
     public void fire(float power, float angle) {
         angle = (float) convertToRadians(angle);
-        float x = power * (float) Math.cos((double) angle);
-        float y = power * (float) Math.sin((double) angle);
+        float x = power * (float) Math.cos(angle);
+        float y = power * (float) Math.sin(angle);
         Vector2 impulse = new Vector2(x, y);
         weaponBody.applyLinearImpulse(impulse, weaponBody.getWorldCenter(), true);
+    }
+
+    public void updateImage(SpriteBatch batch) {
+        int x = (int) weaponBody.getWorldCenter().x;
+        int y = (int) weaponBody.getWorldCenter().y;
+        weaponSprite.setPosition(x - 16 , y - 16);
+        weaponSprite.draw(batch);
     }
 }

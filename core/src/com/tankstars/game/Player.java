@@ -61,5 +61,6 @@ public class Player {
 
     public void update(SpriteBatch batch) {
         tank.updateImage(batch);
+        tank.updateWeaponImage(batch);
     }
 }

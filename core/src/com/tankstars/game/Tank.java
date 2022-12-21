@@ -24,6 +24,7 @@ public abstract class Tank {
     private Player player;
     protected Sprite tankSprite;
     private boolean isReset;
+    private Weapon currentWeapon;
 
     public Tank (Player player, World world) {
         this.world = world;
@@ -78,8 +79,8 @@ public abstract class Tank {
         Vector2 tankPosition = tankBody.getPosition();
         Integer positionX = (int) tankPosition.x;
         Integer positionY = (int) tankPosition.y + 20;
-        Weapon weapon = new Weapon(positionX, positionY, world);
-        weapon.fire(power, angle);
+        currentWeapon = new Weapon(positionX, positionY, world);
+        currentWeapon.fire(power, angle);
     }
 
     public Integer getPositionX() {
@@ -98,6 +99,16 @@ public abstract class Tank {
 
     public void setPositionY(Integer positionY) {
         this.positionY = positionY;
+    }
+
+    public void setCurrentWeapon(Weapon currentWeapon) {
+        this.currentWeapon = currentWeapon;
+    }
+
+    public void updateWeaponImage(SpriteBatch batch) {
+        if (currentWeapon != null) {
+            currentWeapon.updateImage(batch);
+        }
     }
 
     public void handleHit(int damage) {
