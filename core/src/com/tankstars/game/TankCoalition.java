@@ -13,5 +13,6 @@ public class TankCoalition extends Tank {
         } else {
             tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/coalition-mirrored.png")));
         }
+        tankSprite.setSize(64, 64);
     }
 }

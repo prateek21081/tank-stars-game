@@ -79,6 +79,7 @@ public class Arena {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = chainShape;
         fixtureDef.density = 1f;
+        fixtureDef.friction = 1f;
         terrainBody.createFixture(fixtureDef).setUserData("ground");
         chainShape.dispose();
     }
@@ -134,7 +135,7 @@ public class Arena {
         Vector2 impulse = new Vector2(tank.getPositionX() - position.x, tank.getPositionY() - position.y);
         impulse = getUnitVector(impulse);
         System.out.println("Unit impulse" + impulse);
-        impulse.set(impulse.x * (int) Math.pow(hitDamage, 2) * 10, impulse.y * (int) Math.pow(hitDamage, 2) * 10);
+        impulse.set(impulse.x * (int) Math.pow(hitDamage, 3) * 5, impulse.y * (int) Math.pow(hitDamage, 3) * 5);
         System.out.println("Hit impulse" + impulse);
         tank.applyImpulse(impulse);
         checkGameOver();

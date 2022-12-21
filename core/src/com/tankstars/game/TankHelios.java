@@ -13,6 +13,6 @@ public class TankHelios extends Tank {
         } else {
             tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/helios-mirrored.png")));
         }
-
+        tankSprite.setSize(64, 64);
     }
 }

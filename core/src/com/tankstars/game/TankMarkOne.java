@@ -13,5 +13,6 @@ public class TankMarkOne extends Tank {
         } else {
             tankSprite = new Sprite(new Texture(Gdx.files.internal("tank/mark-one-mirrored.png")));
         }
+        tankSprite.setSize(64, 64);
     }
 }

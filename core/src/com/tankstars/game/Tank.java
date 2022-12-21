@@ -49,22 +49,19 @@ public abstract class Tank {
         bodyDef.position.set(positionX, positionY);
         tankBody = world.createBody(bodyDef);
 
-        CircleShape circle = new CircleShape();
-        circle.setRadius(10);
-
         PolygonShape polygonShape = new PolygonShape();
         Vector2[] tankVertices = new Vector2[4];
         tankVertices[0] = new Vector2(0, 0);
-        tankVertices[1] = new Vector2(10, 0);
-        tankVertices[2] = new Vector2(10, 10);
-        tankVertices[3] = new Vector2(0, 10);
+        tankVertices[1] = new Vector2(30, 0);
+        tankVertices[2] = new Vector2(30, 30);
+        tankVertices[3] = new Vector2(0, 30);
 
         polygonShape.set(tankVertices);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
         fixtureDef.density = 5f;
-        fixtureDef.friction = 150f;
+        fixtureDef.friction = 1f;
 
         if (player.isMain) {
             tankBody.createFixture(fixtureDef).setUserData("tankA");
@@ -72,13 +69,12 @@ public abstract class Tank {
             tankBody.createFixture(fixtureDef).setUserData("tankB");
         }
         polygonShape.dispose();
-        circle.dispose();
     }
 
     public void fire (float power, float angle) {
-        Vector2 tankPosition = tankBody.getPosition();
+        Vector2 tankPosition = tankBody.getWorldCenter();
         Integer positionX = (int) tankPosition.x;
-        Integer positionY = (int) tankPosition.y + 20;
+        Integer positionY = (int) tankPosition.y + 40;
         currentWeapon = new Weapon(positionX, positionY, world);
         currentWeapon.fire(power, angle);
     }
@@ -152,18 +148,18 @@ public abstract class Tank {
         boolean isMoving = (Math.abs(tankBody.getLinearVelocity().x) >= 0.25f || Math.abs(tankBody.getLinearVelocity().y) >= 0.25f);
         if (isMoving) {
             Vector2 center = tankBody.getWorldCenter();
-            tankSprite.setPosition(center.x - 5, center.y - 5);
             float box2dAngle = (float) Math.toDegrees(tankBody.getAngle());
             float spriteAngle = tankSprite.getRotation();
             if (Math.abs(box2dAngle - spriteAngle) > 0.1f) ;
             tankSprite.rotate(box2dAngle - spriteAngle);
+            tankSprite.setPosition(tankBody.getWorldCenter().x - 32, tankBody.getWorldCenter().y - 32);
             tankSprite.draw(batch);
             this.isReset = false;
         } else if (!isReset){
             world.destroyBody(tankBody);
             System.out.println("reset");
-            createTankBody(getPositionX() - 5, getPositionY() - 5);
-            tankSprite.setPosition(tankBody.getWorldCenter().x - 5, tankBody.getWorldCenter().y - 5);
+            createTankBody(getPositionX() - 15, getPositionY() - 15);
+            tankSprite.setPosition(tankBody.getWorldCenter().x - 32, tankBody.getWorldCenter().y - 32);
             tankSprite.rotate(-1 * tankSprite.getRotation());
             tankSprite.draw(batch);
             this.isReset = true;
