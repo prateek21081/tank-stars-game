@@ -158,4 +158,12 @@ public class Arena {
         playerA.update(batch);
         playerB.update(batch);
     }
+
+    public void moveTank(boolean left) {
+        if (turn) {
+            playerA.getTank().move(left);
+        } else {
+            playerB.getTank().move(left);
+        }
+    }
 }

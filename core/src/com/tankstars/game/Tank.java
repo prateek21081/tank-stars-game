@@ -60,7 +60,7 @@ public abstract class Tank {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
         fixtureDef.density = 5f;
-        fixtureDef.friction = 1f;
+        fixtureDef.friction = 0.25f;
 
         if (player.isMain) {
             tankBody.createFixture(fixtureDef).setUserData("tankA");
@@ -169,6 +169,16 @@ public abstract class Tank {
             this.isReset = true;
         } else {
             tankSprite.draw(batch);
+        }
+    }
+
+    public void move(boolean left) {
+        if (left) {
+            System.out.println("impulse left");
+            tankBody.applyLinearImpulse(new Vector2(-100000, 0), tankBody.getWorldCenter(), true);
+        } else {
+            System.out.println("impulse right");
+            tankBody.applyLinearImpulse(new Vector2(100000, 0), tankBody.getWorldCenter(), true);
         }
     }
 }

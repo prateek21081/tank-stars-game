@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -22,6 +23,8 @@ public class GameScreen implements Screen {
     private final Table root;
     private final ProgressBar healthPlayerA;
     private final TextButton pauseButton;
+    private final TextButton leftButton;
+    private final TextButton rightButton;
     private final ProgressBar healthPlayerB;
     private final Label angleLabel;
     private final Slider angleSlider;
@@ -128,15 +131,31 @@ public class GameScreen implements Screen {
         btmHUD.add(powerSlider).expandY().left().bottom().space(30).padBottom(30);
         btmHUD.add(powerLabel).expandY().left().bottom().space(30).padBottom(30);
 
+        leftButton = new TextButton("<-", game.skin);
+        rightButton = new TextButton("->", game.skin);
+        btmHUD.add(leftButton).bottom().space(30).padBottom(30);
+        btmHUD.add(rightButton).bottom().space(30).padBottom(30);
+
+        leftButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.arena.moveTank(true);
+            }
+        });
+
+        rightButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.arena.moveTank(false);
+            }
+        });
+
         root.add(topHUD).grow().row();
         root.add(btmHUD).grow();
-
     }
 
     @Override
-    public void show() {
-
-    }
+    public void show() {}
 
     @Override
     public void render(float delta) {
