@@ -3,6 +3,7 @@ package com.tankstars.game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.tankstars.game.Screens.GameOverScreen;
 
 import java.io.Serializable;
 
@@ -106,12 +107,22 @@ public class Arena {
         checkGameOver();
     }
 
-    private void checkGameOver() {
+    public void checkGameOver() {
         if (playerA.checkDead()) {
             isGameOver = true;
         } else if (playerB.checkDead()) {
             isGameOver = true;
         }
+    }
+
+    public String getWinner() {
+        String message = "";
+         if (playerA.checkDead()) {
+            message = playerB.getName() + " won!";
+        } else if (playerB.checkDead()) {
+            message = playerA.getName() + " won!";
+        }
+        return message;
     }
 
     private Vector2 getUnitVector(Vector2 vector) {

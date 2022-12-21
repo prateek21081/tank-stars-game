@@ -66,11 +66,11 @@ public class LoadGameScreen implements Screen {
                 Player playerA = new Player(game.gameState.getPlayerStateA().name, game.gameState.getPlayerStateA().tankName, true);
                 Player playerB = new Player(game.gameState.getPlayerStateB().name, game.gameState.getPlayerStateB().tankName, false);
                 game.createArena(playerA, playerB);
-                playerA.getTank().updateTankBody();
-                playerB.getTank().updateTankBody();
                 game.arena.getTerrain().setyCoordinates(game.gameState.getTerrain());
                 game.gameState.setState(game.gameState.getPlayerStateA(), playerA);
                 game.gameState.setState(game.gameState.getPlayerStateB(), playerB);
+                playerA.getTank().updateTankBody();
+                playerB.getTank().updateTankBody();
                 game.arena.getTerrain().generateTexture();
                 game.arena.updateTerrain();
                 game.setScreen(new GameScreen(game));

@@ -49,6 +49,8 @@ public class GameState implements Serializable {
    public void setState(PlayerState playerState, Player player) {
       Tank tank = player.getTank();
       tank.setHealth(playerState.health);
+       System.out.println(playerState.positionX);
+       System.out.println(playerState.positionY);
       tank.setPositionX(playerState.positionX);
       tank.setPositionY(playerState.positionY);
    }

@@ -18,6 +18,10 @@ public class Weapon {
         createWeaponBody(positionX, positionY, world);
     }
 
+    public Weapon() {
+
+    }
+
     public Weapon (int damage, double radius, int mass) {
         this.damage = damage;
         this.radius = radius;
@@ -41,7 +45,7 @@ public class Weapon {
         circleShape.dispose();
     }
 
-    private double convertToRadians(float angle) {
+    public double convertToRadians(float angle) {
         return Math.PI * angle / 180.0;
     }
 

@@ -89,10 +89,11 @@ public class GameScreen implements Screen {
         topHUD.add(healthPlayerB).expand().left().top().space(30).padTop(30);
         healthPlayerB.setValue(100);
 
-        angleLabel = new Label("Angle : XXX", game.skin);
+        angleLabel = new Label("Angle :  45", game.skin);
         btmHUD.add(angleLabel).expandY().right().bottom().space(30).padBottom(30);
 
         angleSlider = new Slider(0, 179, 1, false, game.skin);
+        angleSlider.setValue(45);
         btmHUD.add(angleSlider).expandY().right().bottom().space(30).padBottom(30);
         angleSlider.addListener(new ChangeListener() {
             @Override
@@ -102,9 +103,13 @@ public class GameScreen implements Screen {
                 angleLabel.setText(String.format("Angle : %3d", (int) angle));
             }
         });
+        leftButton = new TextButton("<-", game.skin);
+        rightButton = new TextButton("->", game.skin);
 
         fireButton = new TextButton("Fire", game.skin);
+        btmHUD.add(leftButton).bottom().space(30).padBottom(30);
         btmHUD.add(fireButton).bottom().space(30).padBottom(30);
+        btmHUD.add(rightButton).bottom().space(30).padBottom(30);
         fireButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -117,8 +122,9 @@ public class GameScreen implements Screen {
             }
         });
 
-        powerLabel = new Label("Power : XXX", game.skin);
+        powerLabel = new Label("Power :  75", game.skin);
         powerSlider = new Slider(0, 100, 1, false, game.skin);
+        powerSlider.setValue(75);
         powerSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -131,10 +137,6 @@ public class GameScreen implements Screen {
         btmHUD.add(powerSlider).expandY().left().bottom().space(30).padBottom(30);
         btmHUD.add(powerLabel).expandY().left().bottom().space(30).padBottom(30);
 
-        leftButton = new TextButton("<-", game.skin);
-        rightButton = new TextButton("->", game.skin);
-        btmHUD.add(leftButton).bottom().space(30).padBottom(30);
-        btmHUD.add(rightButton).bottom().space(30).padBottom(30);
 
         leftButton.addListener(new ClickListener() {
             @Override
@@ -174,9 +176,12 @@ public class GameScreen implements Screen {
             game.arena.getPlayerB().getTank().setCurrentWeapon(null);
             explosion = true;
         }
-        if (game.arena.isGameOver) game.setScreen(new MainMenuScreen(game));
+        if (game.arena.isGameOver) {
+            String message = game.arena.getWinner();
+            game.setScreen(new GameOverScreen(game, message));
+        }
 
-        game.arena.debugRenderer.render(game.arena.world, game.camera.combined);
+//        game.arena.debugRenderer.render(game.arena.world, game.camera.combined);
         game.batch.setProjectionMatrix(game.camera.combined);
         game.batch.begin();
         game.batch.draw(game.arena.getTerrain().getTexture(), 0, 0);

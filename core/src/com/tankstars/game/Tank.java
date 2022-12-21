@@ -72,7 +72,7 @@ public abstract class Tank {
 
     public void updateTankBody() {
         world.destroyBody(tankBody);
-        createTankBody(getPositionX(), getPositionY());
+        createTankBody(this.positionX, this.positionY);
     }
 
     public void fire (float power, float angle) {

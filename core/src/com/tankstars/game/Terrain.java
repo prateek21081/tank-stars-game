@@ -20,6 +20,12 @@ public class Terrain {
         generateTexture();
     }
 
+    public Terrain() {
+        WIDTH = 1600;
+        HEIGHT = 800;
+        initYCoordinates();
+    }
+
     public List<Integer> getyCoordinates() {
         return yCoordinates;
     }
