@@ -1,6 +1,7 @@
 package com.tankstars.game;
 
 import java.io.*;
+import java.util.Date;
 import java.util.List;
 
 public class GameState implements Serializable {
@@ -58,7 +59,9 @@ public class GameState implements Serializable {
         getState(this.playerStateA, playerA);
         getState(this.playerStateB, playerB);
 
-        this.gameID = "testSaveGame.xyz";
+        Date date = new Date();
+        String time = String.valueOf(date.getTime());
+        this.gameID = time;
         this.terrain = game.arena.getTerrain().getyCoordinates();
 
         FileOutputStream fileOutputStream = new FileOutputStream("savedgames/" + this.gameID);
@@ -80,5 +83,4 @@ public class GameState implements Serializable {
       this.playerStateA = gameState.playerStateA;
       this.playerStateB = gameState.playerStateB;
    }
-
 }

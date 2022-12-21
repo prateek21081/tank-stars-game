@@ -39,8 +39,7 @@ public abstract class Tank {
 
         this.positionX = this.player.isMain ? 600 : TankStarsGame.VIEWPORT_WIDTH - 600;
         this.positionY = TankStarsGame.VIEWPORT_HEIGHT / 2;
-
-        this.createTankBody(this.positionX, this.positionY);
+        createTankBody(this.positionX, this.positionY);
     }
 
     public void createTankBody(int positionX, int positionY) {
@@ -69,6 +68,11 @@ public abstract class Tank {
             tankBody.createFixture(fixtureDef).setUserData("tankB");
         }
         polygonShape.dispose();
+    }
+
+    public void updateTankBody() {
+        world.destroyBody(tankBody);
+        createTankBody(getPositionX(), getPositionY());
     }
 
     public void fire (float power, float angle) {
