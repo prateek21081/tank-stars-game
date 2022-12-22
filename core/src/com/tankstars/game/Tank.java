@@ -29,7 +29,7 @@ public abstract class Tank {
     public Tank (Player player, World world) {
         this.world = world;
 
-        this.fuel = 100;
+        this.fuel = 3;
         this.health = 100;
         this.angle = 60d;
         this.impulse = 1;
@@ -173,6 +173,11 @@ public abstract class Tank {
     }
 
     public void move(boolean left) {
+        if (fuel <= 0) {
+            System.out.println("No fuel left");
+            return;
+        }
+
         if (left) {
             System.out.println("impulse left");
             tankBody.applyLinearImpulse(new Vector2(-100000, 0), tankBody.getWorldCenter(), true);
@@ -180,5 +185,6 @@ public abstract class Tank {
             System.out.println("impulse right");
             tankBody.applyLinearImpulse(new Vector2(100000, 0), tankBody.getWorldCenter(), true);
         }
+        fuel -= 1;
     }
 }
